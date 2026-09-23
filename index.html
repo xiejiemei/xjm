@@ -433,8 +433,21 @@ function playSound(kind,g){
       o.start(now+i*step);o.stop(now+i*step+.2);});
   }catch(e){}
 }
-function speakEn(t){if('speechSynthesis'in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;speechSynthesis.speak(u);}}
-function speakZh(t){if('speechSynthesis'in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='zh-CN';u.rate=.8;speechSynthesis.speak(u);}}
+let _ttsVoices=[];let _ttsWarned={zh:false,en:false};
+function _pickVoice(lang){const base=lang.split('-')[0].toLowerCase();return _ttsVoices.find(v=>v.lang.toLowerCase().indexOf(lang.toLowerCase())===0)||_ttsVoices.find(v=>v.lang.toLowerCase().indexOf(base)===0);}
+function _refreshVoices(){try{_ttsVoices=window.speechSynthesis.getVoices()||[];}catch(e){_ttsVoices=[];}return _ttsVoices;}
+if('speechSynthesis'in window){_refreshVoices();window.speechSynthesis.onvoiceschanged=()=>{_refreshVoices();try{if(window.speechSynthesis.pending||window.speechSynthesis.speaking)setTimeout(()=>window.speechSynthesis.resume(),120);}catch(e){}};}
+function _doSpeak(t,lang,rate,key){if(!('speechSynthesis'in window)){if(!_ttsWarned[key]){_ttsWarned[key]=true;toast('🔇 当前浏览器不支持朗读，请用 Chrome 或 Edge 打开');}return false;}
+  _refreshVoices();const v=_pickVoice(lang);
+  if(_ttsVoices.length===0&&!window.speechSynthesis.default){if(!_ttsWarned[key]){_ttsWarned[key]=true;toast(lang.indexOf('en')===0?'🔇 系统缺少英文语音，请在系统「文字转语音」安装英文语音后刷新':'🔇 系统缺少中文语音包，请在系统「文字转语音」安装/下载中文后刷新');}return false;}
+  window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=lang;u.rate=rate;if(v){u.voice=v;}
+  const trySpeak=()=>{try{window.speechSynthesis.speak(u);}catch(e){if(!_ttsWarned[key]){_ttsWarned[key]=true;toast('🔇 无法发声：请检查浏览器/系统语音设置');}}};
+  trySpeak();
+  if(_ttsVoices.length===0){setTimeout(trySpeak,180);}
+  return true;
+}
+function speakEn(t){if(_ttsVoices.length===0&&'speechSynthesis'in window){setTimeout(()=>_doSpeak(t,'en-US',.8,'en'),260);return;} _doSpeak(t,'en-US',.8,'en');}
+function speakZh(t){if(_ttsVoices.length===0&&'speechSynthesis'in window){setTimeout(()=>_doSpeak(t,'zh-CN',.8,'zh'),260);return;} _doSpeak(t,'zh-CN',.8,'zh');}
 function speakByLang(t,lang){if(lang==='zh'||lang.indexOf('zh')===0)speakZh(t);else speakEn(t);}
 
 /* ================= 计算方法演示（视频式讲解） ================= */
