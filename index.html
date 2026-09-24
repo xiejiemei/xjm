@@ -218,6 +218,28 @@
   .btn-row{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
   .btn.go{background:linear-gradient(135deg,var(--english2),var(--english)); flex:1; min-width:130px;}
 
+  .ext-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;padding-bottom:24px;}
+  .ext-card{background:linear-gradient(180deg,#fff,#f4f8ff);border:2px solid #e3ecfa;border-radius:22px;padding:20px 14px;text-align:center;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s;}
+  .ext-card:hover{transform:translateY(-3px);}
+  .ext-chip{background:linear-gradient(135deg,#b56bff,#7a3ff0);}
+  .ext-chip .t{color:#fff!important;}
+  .ext-emo{font-size:34px;line-height:1;}
+  .ext-name{font-size:17px;font-weight:900;color:#2a3a55;margin-top:6px;}
+  .ext-desc{font-size:12px;color:#8a9ab8;font-weight:600;margin-top:4px;}
+  .plan-item{display:flex;align-items:center;gap:10px;background:#f7faff;border:1px solid #e6eefb;border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;}
+  .plan-check{font-size:20px;}
+  .plan-t{font-weight:900;color:#2a3a55;font-size:16px;}
+  .plan-s{color:#8a9ab8;font-size:12px;font-weight:600;margin-left:auto;}
+  .plan-done{background:#eefbe9;border-color:#bcE9a8;}
+  .wrong-item{display:flex;align-items:center;gap:8px;padding:10px 8px;border-bottom:1px dashed #e6eefb;}
+  .wrong-n{color:#c3a5ff;font-weight:900;}
+  .wrong-q{flex:1;color:#3a4a66;font-size:14px;font-weight:600;}
+  .wrong-del{background:#ffe3e3;border:none;border-radius:10px;color:#ff6b6b;width:24px;height:24px;font-weight:900;cursor:pointer;}
+  .text-card{background:linear-gradient(180deg,#fffdf5,#fff8e6);border:2px solid #ffe6b8;border-radius:18px;padding:16px 18px;margin-bottom:12px;box-shadow:0 4px 12px rgba(200,160,60,.12);cursor:pointer;}
+  .text-title{font-size:18px;font-weight:900;color:#b8860b;margin-bottom:6px;}
+  .text-body{font-size:16px;line-height:1.9;color:#5a4a2a;font-family:"STKaiti","KaiTi","PingFang SC",serif;}
+  .text-act{margin-top:8px;text-align:right;}
+  .read-poem{font-size:22px;line-height:2.2;text-align:center;font-family:"STKaiti","KaiTi","PingFang SC",serif;font-weight:700;color:#3a3a5c;padding:14px 0;}
   .learn-card{background:linear-gradient(180deg,#fff,#fbfdff);border-radius:28px;box-shadow:0 -6px 0 var(--english2),var(--shadow);padding:24px;text-align:center;margin-bottom:16px;}
   .learn-title{font-size:24px;font-weight:900;margin-bottom:10px;}
   .poem{font-size:23px;line-height:2;font-family:"STKaiti","KaiTi","PingFang SC",serif;font-weight:700;color:#3a3a5c;}
@@ -323,6 +345,37 @@
   .read-result.no{background:#fff1f0;color:#e05b4f;}
   .score-pop{position:fixed;z-index:9999;font-size:24px;font-weight:900;color:var(--gold);pointer-events:none;animation:popScore .9s ease-out forwards;}
   @keyframes popScore{0%{opacity:1;transform:translateY(0) scale(.6);}30%{transform:translateY(-16px) scale(1.15);}100%{opacity:0;transform:translateY(-52px) scale(1);}}
+
+  /* ============ 益智游戏 ============ */
+  .pz-board{display:grid;gap:6px;margin:14px auto;justify-content:center;user-select:none;}
+  .pz-cell{display:flex;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(180deg,#fff,#eef3ff);border:2px solid #dbe5f7;font-weight:900;color:#2a3a55;cursor:pointer;font-size:22px;transition:transform .12s,background .12s,border-color .12s;box-shadow:0 3px 8px rgba(80,110,180,.12);}
+  .pz-cell:active{transform:scale(.9);}
+  .pz-cell.done{background:linear-gradient(180deg,#e5f9e8,#c6f0cd);border-color:#8ed99a;color:#1f8f4b;}
+  .pz-cell.ceil{background:linear-gradient(180deg,#fff4f4,#ffe3e3);border-color:#ffb4b4;color:#d1495b;}
+  .pz-cell.target-found{background:linear-gradient(180deg,#e5f9e8,#c6f0cd);border-color:#8ed99a;color:#1f8f4b;}
+  .pz-cell.target-miss{background:linear-gradient(180deg,#fff4f4,#ffe3e3);border-color:#ffb4b4;transform:scale(.92);}
+  .pz-memo{color:#7a8db0;font-size:11px;}
+  .pz-cell.face{font-size:30px;cursor:pointer;}
+  .pz-cell.hidden{background:linear-gradient(180deg,#b56bff,#7a3ff0);border-color:#9b5af0;color:#fff;font-size:22px;}
+  .pz-stat{display:flex;gap:10px;justify-content:center;margin:8px 0;flex-wrap:wrap;}
+  .pz-stat b{background:#f1f6ff;border:1px solid #dbe5f7;border-radius:12px;padding:6px 12px;font-size:14px;color:#2a3a55;}
+  .pz-bar{height:12px;border-radius:8px;background:#eef2fb;overflow:hidden;margin-top:6px;}
+  .pz-bar i{display:block;height:100%;background:linear-gradient(90deg,#56c2c9,#4f9df7);transition:width .2s;}
+  .pz-star{font-size:26px;letter-spacing:4px;}
+
+  /* ============ 积分商城 ============ */
+  .reward-chip{background:linear-gradient(135deg,#ffb35c,#ff8c42)!important;color:#5a3a00;}
+  .pw-balance{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#fff7e8,#ffe9c7);border:2px solid #ffd58a;border-radius:20px;padding:14px 18px;font-size:18px;font-weight:900;color:#8a5600;box-shadow:var(--shadow);}
+  .rw-item{background:linear-gradient(180deg,#fff,#fff8ef);border:2px solid #f2e2c2;border-radius:20px;padding:16px 14px;box-shadow:var(--shadow);}
+  .rw-item .rw-emo{font-size:40px;text-align:center;}
+  .rw-item .rw-name{font-weight:900;color:#2a3a55;text-align:center;font-size:16px;margin-top:4px;}
+  .rw-item .rw-cost{text-align:center;font-size:14px;color:#c08a1a;font-weight:800;margin:4px 0 8px;}
+  .rw-claim{width:100%;border:none;border-radius:14px;padding:10px;font-weight:900;font-size:15px;cursor:pointer;background:linear-gradient(135deg,#ffc94d,#ff9f2e);color:#5a3a00;}
+  .rw-claim:disabled{background:#f4ead0;color:#a9a;cursor:not-allowed;}
+  .rw-item.locked{filter:grayscale(.9);opacity:.6;}
+  .claim-row{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #eee2c8;border-radius:16px;padding:10px 12px;margin-bottom:8px;}
+  .claim-row .cn{color:#c08a1a;font-weight:900;}
+  .s-btn{border:none;border-radius:12px;padding:8px 12px;font-weight:800;cursor:pointer;font-size:13px;}
 </style>
 </head>
 <body>
@@ -372,6 +425,12 @@
 
     <!-- 学科内容 -->
     <section class="screen" id="screen-subject"></section>
+    <!-- 拓展学习 -->
+    <section class="screen" id="screen-extend"></section>
+    <!-- 益智游戏 -->
+    <section class="screen" id="screen-puzzle"></section>
+    <!-- 积分商城 -->
+    <section class="screen" id="screen-reward"></section>
 
   </main>
 </div>
@@ -433,21 +492,24 @@ function playSound(kind,g){
       o.start(now+i*step);o.stop(now+i*step+.2);});
   }catch(e){}
 }
-let _ttsVoices=[];let _ttsWarned={zh:false,en:false};
+let _ttsVoices=[];let _ttsWarned={zh:false,en:false};let _ttsOnline=null;let _ttsOn=false;
 function _pickVoice(lang){const base=lang.split('-')[0].toLowerCase();return _ttsVoices.find(v=>v.lang.toLowerCase().indexOf(lang.toLowerCase())===0)||_ttsVoices.find(v=>v.lang.toLowerCase().indexOf(base)===0);}
 function _refreshVoices(){try{_ttsVoices=window.speechSynthesis.getVoices()||[];}catch(e){_ttsVoices=[];}return _ttsVoices;}
 if('speechSynthesis'in window){_refreshVoices();window.speechSynthesis.onvoiceschanged=()=>{_refreshVoices();try{if(window.speechSynthesis.pending||window.speechSynthesis.speaking)setTimeout(()=>window.speechSynthesis.resume(),120);}catch(e){}};}
-function _doSpeak(t,lang,rate,key){if(!('speechSynthesis'in window)){if(!_ttsWarned[key]){_ttsWarned[key]=true;toast('🔇 当前浏览器不支持朗读，请用 Chrome 或 Edge 打开');}return false;}
-  _refreshVoices();const v=_pickVoice(lang);
-  if(_ttsVoices.length===0&&!window.speechSynthesis.default){if(!_ttsWarned[key]){_ttsWarned[key]=true;toast(lang.indexOf('en')===0?'🔇 系统缺少英文语音，请在系统「文字转语音」安装英文语音后刷新':'🔇 系统缺少中文语音包，请在系统「文字转语音」安装/下载中文后刷新');}return false;}
+function _speakOnline(text,lang){_ttsOn=true;try{if(!_ttsOnline&&typeof Audio!=='undefined')_ttsOnline=new Audio();if(_ttsOnline){_ttsOnline.src='https://dict.youdao.com/dictvoice?audio='+encodeURIComponent(text)+'&type='+(lang.indexOf('en')===0?2:1);_ttsOnline.play&&_ttsOnline.play().catch(()=>{});}}catch(e){}}
+function _hasZhVoice(){return _ttsVoices.some(v=>/zh|cmn|yue|chinese/i.test(v.lang));}
+function _hasEnVoice(){return _ttsVoices.some(v=>/en|english/i.test(v.lang));}
+function _ttsLocalOk(kind){if(!('speechSynthesis'in window))return false;return kind==='zh'?_hasZhVoice():_hasEnVoice();}
+function _doSpeak(t,lang,rate,key){const kind=lang.indexOf('en')===0?'en':'zh';
+  if(!('speechSynthesis'in window)){_speakOnline(t,lang);return;}
+  _refreshVoices();
+  if(!_ttsLocalOk(kind)){_speakOnline(t,lang);if(!_ttsWarned[key]){_ttsWarned[key]=true;toast('🔈 设备未装'+((kind==='en')?'英文':'中文')+'语音包，已自动切换为在线发音（需联网）');}return;}
+  const v=_pickVoice(lang);
   window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=lang;u.rate=rate;if(v){u.voice=v;}
-  const trySpeak=()=>{try{window.speechSynthesis.speak(u);}catch(e){if(!_ttsWarned[key]){_ttsWarned[key]=true;toast('🔇 无法发声：请检查浏览器/系统语音设置');}}};
-  trySpeak();
-  if(_ttsVoices.length===0){setTimeout(trySpeak,180);}
-  return true;
-}
-function speakEn(t){if(_ttsVoices.length===0&&'speechSynthesis'in window){setTimeout(()=>_doSpeak(t,'en-US',.8,'en'),260);return;} _doSpeak(t,'en-US',.8,'en');}
-function speakZh(t){if(_ttsVoices.length===0&&'speechSynthesis'in window){setTimeout(()=>_doSpeak(t,'zh-CN',.8,'zh'),260);return;} _doSpeak(t,'zh-CN',.8,'zh');}
+  const trySpeak=()=>{try{window.speechSynthesis.speak(u);}catch(e){_speakOnline(t,lang);}};
+  trySpeak();}
+function speakEn(t){_doSpeak(t,'en-US',.8,'en');}
+function speakZh(t){_doSpeak(t,'zh-CN',.8,'zh');}
 function speakByLang(t,lang){if(lang==='zh'||lang.indexOf('zh')===0)speakZh(t);else speakEn(t);}
 
 /* ================= 计算方法演示（视频式讲解） ================= */
@@ -1454,15 +1516,15 @@ function minuteName(x){if(x===0)return '';if(x<10)return D[x]+'分';if(x===10)re
 function wrongHours(invalid){const base=[1,3,5,7,9,11].filter(x=>x!==invalid&&Math.abs(x-invalid)!==1);return shuffle(base).slice(0,3);}
 function buildClock(g){const set=[];const seen=new Set();let guard=0;
   for(let i=0;i<qN(g);i++){const h=1+rndInt(12),hzh=hourName(h);let m=(g<=4?pick([0,30]):pick([0,5,10,15,20,30,40,45]));let q,correct;
-    const disH=wrongHours(h);
+    const disH=wrongHours(h);let sub='',exp='',oq,oans;
     if(m===0){correct=hzh+'时';q=`钟面上，<b>分针指向12，时针指向${hzh}</b>。现在几时？`;
-      const ro=strAnswer(correct,disH.map(x=>hourName(x)+'时'));set.push({q,sub:'分针指12是整点，看时针指几。',options:ro.options,answer:ro.answer,exp:`分针指向12刚好是整点，时针指着${hzh}，所以是 ${correct}。`});}
+      const ro=strAnswer(correct,disH.map(x=>hourName(x)+'时'));oq=ro.options;oans=ro.answer;sub='分针指12是整点，看时针指几。';exp=`分针指向12刚好是整点，时针指着${hzh}，所以是 ${correct}。`;}
     else if(m===30){correct=hzh+'时半';q=`钟面上，<b>分针指向6，时针刚走过${hzh}</b>。现在几时半？`;
-      const ro=strAnswer(correct,disH.map(x=>hourName(x)+'时半'));set.push({q,sub:'分针指6是半点，看时针刚走过几。',options:ro.options,answer:ro.answer,exp:`分针指向6表示已经过了半小时，所以是 ${correct}。`});}
+      const ro=strAnswer(correct,disH.map(x=>hourName(x)+'时半'));oq=ro.options;oans=ro.answer;sub='分针指6是半点，看时针刚走过几。';exp=`分针指向6表示已经过了半小时，所以是 ${correct}。`;}
     else{correct=hzh+'时'+minuteName(m);q=`钟面上，<b>时针走过${hzh}，分针指向${m}分</b>。现在几时几分？`;
-      const alt=minuteName(m+5===60?5:m+5);const ro=strAnswer(correct,disH.map(x=>hourName(x)+'时'+minuteName(m)));
-      set.push({q,sub:'先看小时（时针走过几），再看分钟（分针指几）。',options:ro.options,answer:ro.answer,exp:`时针走过${hzh}表示${hzh}时多，分针指向${m}分，所以是 ${correct}。`});}
-    const key=stripT(q);if(seen.has(key)){if(guard++>200){const r2=strAnswer('三时',['五时','七时','九时']);set.push({q:'钟面上时针指3分针指12，现在几时？',sub:'整时看时针',options:r2.options,answer:r2.answer,exp:'分针指12是整点，时针指3，所以是3时。'});continue;}i--;continue;}seen.add(key);}
+      const ro=strAnswer(correct,disH.map(x=>hourName(x)+'时'+minuteName(m)));oq=ro.options;oans=ro.answer;sub='先看小时（时针走过几），再看分钟（分针指几）。';exp=`时针走过${hzh}表示${hzh}时多，分针指向${m}分，所以是 ${correct}。`;}
+    const key=stripT(q);if(seen.has(key)){if(guard++>200){const r2=strAnswer('三时',['五时','七时','九时']);set.push({q:'钟面上时针指3分针指12，现在几时？',sub:'整时看时针',options:r2.options,answer:r2.answer,exp:'分针指12是整点，时针指3，所以是3时。'});continue;}i--;continue;}seen.add(key);
+    set.push({q,sub,options:oq,answer:oans,exp});}
   return set;}
 function buildMoney(g){const set=[];const seen=new Set();let guard=0;let k=0;
   for(let i=0;i<qN(g);i++){k++;let q,ans,sub,exp,key;const kind=k%5;
@@ -1490,8 +1552,9 @@ function buildUnits(g){const set=[];const seen=new Set();let guard=0;
       if(k===0){ans=x*100;q=`${x}平方千米 ＝ （ ）公顷`;sub='1平方千米=100公顷';exp=`1平方千米＝100公顷，${x}平方千米＝${ans} 公顷。`;}
       else if(k===1){ans=x*10000;q=`${x}公顷 ＝ （ ）平方米`;sub='1公顷=10000平方米';exp=`1公顷＝10000平方米，${x}公顷＝${ans} 平方米。`;}
       else{ans=x*10000;q=`${x}平方千米 ＝ （ ）平方米`;sub='1平方千米=1000000平方米';exp=`1平方千米＝1000000平方米，${x}平方千米＝${ans} 平方米。`;}}
+    key=q+'#'+ans;
     if(seen.has(key)){if(guard++>150){const r2=numAnswer(1000,1,9000);set.push({q:'1千米 ＝ （ ）米',sub:'单位换算',options:r2.options,answer:r2.answer,exp:'1千米=1000米。'});continue;}i--;continue;}seen.add(key);
-    const wh=g>=7?2000000:9000;const r=numAnswer(ans,1,wh);set.push({q:`<span style="font-size:26px">${q}</span>`,sub,options:r.options,answer:r.answer,exp});}
+    const wh=g>=7?2000000:9000;const r=numAnswer(ans,1,Math.max(wh,ans+10));set.push({q:`<span style="font-size:26px">${q}</span>`,sub,options:r.options,answer:r.answer,exp});}
   return set;}
 function buildShapeArea(g){const set=[];const seen=new Set();let guard=0;
   for(let i=0;i<qN(g);i++){let q,ans,sub,exp,key;
@@ -1505,6 +1568,7 @@ function buildShapeArea(g){const set=[];const seen=new Set();let guard=0;
       else if(k===1){const l=3+rndInt(10),w=2+rndInt(8);ans=2*(l+w);q=`长${l}、宽${w}厘米的长方形，周长是 （ ）厘米`;sub='长方形周长＝（长＋宽）×2';exp=`周长＝（${l}＋${w}）×2＝${ans} 厘米。`;}
       else if(k===2){const l=3+rndInt(10),w=2+rndInt(8);ans=l*w;q=`长${l}、宽${w}厘米的长方形，面积是 （ ）平方厘米`;sub='长方形面积＝长×宽';exp=`面积＝${l}×${w}＝${ans} 平方厘米。`;}
       else{const a=2+rndInt(10);ans=a*a;q=`边长${a}厘米的正方形，面积是 （ ）平方厘米`;sub='正方形面积＝边长×边长';exp=`面积＝${a}×${a}＝${ans} 平方厘米。`;}}
+    if(!key)key=q+'#'+ans;
     if(seen.has(key)){if(guard++>150){const r2=numAnswer(12,1,500);set.push({q:'边长3厘米的正方形，周长是 （ ）厘米',sub:'周长=边长×4',options:r2.options,answer:r2.answer,exp:'4×3=12厘米。'});continue;}i--;continue;}seen.add(key);
     const r=numAnswer(ans,1,2000);set.push({q,sub,options:r.options,answer:r.answer,exp});}
   return set;}
@@ -1659,7 +1723,10 @@ function renderHome(){
     `<div class="chip" onclick="openAbacus()"><span class="t">🧮 珠心算课程</span></div>`+
     `<div class="chip" onclick="openLearn('poem')"><span class="t">📜 古诗欣赏</span></div>`+
     `<div class="chip" onclick="openIpaLearn()"><span class="t">🔤 英语音标学习</span></div>`+
-    `<div class="chip" onclick="openLearn('convo')"><span class="t">💬 英语会话</span></div>`;
+    `<div class="chip" onclick="openLearn('convo')"><span class="t">💬 英语会话</span></div>`+
+    `<div class="chip extend-chip" onclick="openExtend()"><span class="t">🧩 拓展学习</span></div>`+
+    `<div class="chip" style="background:linear-gradient(135deg,#ff9a8b,#ff6b7a);color:#fff" onclick="openPuzzle()"><span class="t">🎯 益智游戏</span></div>`+
+    `<div class="chip reward-chip" onclick="openReward()"><span class="t">🎁 积分商城</span></div>`;
   // 荣誉墙
   $('#badgeWall').innerHTML=renderBadges();
   updateTop();
@@ -1671,8 +1738,251 @@ function renderBadges(){
   return all.map(b=>{const on=state.badges.includes(b);const[na,ic]=def[b];return `<div class="badge ${on?'unlocked':'locked'}"><div class="b">${ic}</div><small>${na}</small></div>`;}).join('');
 }
 
-/* ================= 学科页 ================= */
-let current={sub:null,grade:1,type:null,quiz:[],idx:0,correct:0};
+/* ================= 拓展学习 ================= */
+let extState={plan:{},done:{},bili:{},read:{},wrong:[]};
+const EXT_KEY='funExtend';
+function xload(){try{const s=JSON.parse(localStorage.getItem(EXT_KEY)||'null');if(s){extState=Object.assign(extState,s);}}catch(e){}}
+function xsave(){try{localStorage.setItem(EXT_KEY,JSON.stringify(extState));}catch(e){}}
+function today(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function openExtend(){xload();renderExtendHome();show('screen-extend');}
+function extBack(){show('screen-home');}
+function renderExtendHome(){
+  const t=today();
+  const planDone=extState.done[t]?extState.done[t].length:0;const planTotal=8;
+  const cards=[
+    ['📋','今日作战计划','plan',`本日完成 ${planDone}/${planTotal}`],
+    ['🩹','错题练习','wrong',`错题 ${extState.wrong.length} 道`],
+    ['🧠','思维训练','think','动脑小挑战'],
+    ['📺','B站英语打卡','bili',DO_biliDone(t)],
+    ['📖','必备课文','text','识字·诵读'],
+    ['🧮','口算练习','oral','计时大挑战'],
+    ['✏️','应用题','apply','生活数学'],
+    ['🌅','每日晨读','read',DO_readDone(t)],
+  ];
+  $('#screen-extend').innerHTML=`
+    <div class="quiz-head">
+      <button class="back" onclick="extBack()">🏠 首页</button>
+      <span class="q-label">🧩 拓展学习</span>
+    </div>
+    <div class="hero" style="padding-top:6px"><div class="big">🧩</div><h1>拓展学习空间</h1>
+      <p>计划 · 错题 · 思维 · 晨读，每天进步一点点！</p></div>
+    <div class="ext-grid">
+      ${cards.map(c=>`<div class="ext-card" onclick="extOpen('${c[2]}')">
+        <div class="ext-emo">${c[0]}</div><div class="ext-name">${c[1]}</div><div class="ext-desc">${c[3]}</div>
+      </div>`).join('')}
+    </div>`;
+}
+function extOpen(kind){const fn={plan:renderPlanPlan,wrong:renderWrong,think:renderThink,bili:renderBili,text:renderText,oral:renderOral,apply:renderApply,read:renderRead}[kind];if(fn)fn();else toast('该功能暂未开放');}
+function DO_biliDone(t){return extState.bili[t]?'今日已打卡✅':'去打卡'};
+function DO_readDone(t){return extState.read[t]?'今日已完成🌅':'开始晨读'};
+xload();
+
+/* ================= 今日作战计划 ================= */
+const PLAN_ITEMS=[
+  ['chinese','📚 语文','识字/拼音/古诗'],
+  ['math','🔢 数学','口算/应用题'],
+  ['english','🔤 英语','单词/句子'],
+  ['read','🌅 晨读','课文/古诗'],
+  ['oral','🧮 口算','20道'],
+  ['think','🧠 思维','1道'],
+  ['wrong','🩹 错题','复习'],
+  ['bili','📺 英语视频','B站打卡'],
+];
+function renderPlanPlan(){
+  const t=today();const done=extState.done[t]||[];
+  $('#screen-extend').innerHTML=`
+    <div class="quiz-head">
+      <button class="back" onclick="openExtend()">↩ 拓展</button>
+      <span class="q-label">📋 今日作战计划 · ${t}</span>
+    </div>
+    <div class="card-q"><div class="q-text">今天也要元气满满！完成下面目标并打卡吧 💪</div>
+    <div style="margin-top:10px">
+      ${PLAN_ITEMS.map((p,i)=>`<div class="plan-item ${done.includes(p[0])?'plan-done':''}" onclick="togglePlan('${p[0]}')">
+        <span class="plan-check">${done.includes(p[0])?'✅':'⬜'}</span>
+        <span class="plan-t">${p[1]}</span><span class="plan-s">${p[2]}</span>
+      </div>`).join('')}
+    </div>
+    <div class="feedback" style="margin-top:12px">${done.length>=8?'🎉 今日全部完成，太棒了！':`已完成 ${done.length}/8，继续加油`}</div>
+    </div>`;
+  show('screen-extend');
+}
+function togglePlan(item){const t=today();let done=extState.done[t]||[];if(done.includes(item)){done=done.filter(x=>x!==item);}else{done.push(item);}extState.done[t]=done;xsave();renderPlanPlan();if(done.length>=8)toast('🎊 今日作战计划全部完成！你是最棒的');}
+
+/* ================= 错题练习 ================= */
+function recordWrong(q){if(!q||!q.q)return;xload();
+  const key=extState.wrong.findIndex(w=>stripT(w.q)===stripT(q.q));
+  const item={q:q.q,sub:q.sub||'',options:q.options,answer:q.answer,exp:q.exp||'',type:current.type||'quiz'};
+  if(key>=0)extState.wrong[key]=item;else extState.wrong.push(item);
+  if(extState.wrong.length>60)extState.wrong=extState.wrong.slice(-60);
+  xsave();}
+function renderWrong(){
+  const list=extState.wrong;
+  if(list.length===0){$('#screen-extend').innerHTML=`
+    <div class="quiz-head"><button class="back" onclick="openExtend()">↩ 拓展</button><span class="q-label">🩹 错题练习</span></div>
+    <div class="card-q"><div class="q-text">🎉 太棒了！你还没有错题哦</div>
+    <p style="margin-top:10px;text-align:center">继续保持，答错会自动收进错题本</p></div>`;show('screen-extend');return;}
+  $('#screen-extend').innerHTML=`
+    <div class="quiz-head">
+      <button class="back" onclick="openExtend()">↩ 拓展</button>
+      <span class="q-label">🩹 错题本 · ${list.length} 道</span>
+      <button class="back" onclick="wrongClear()">🗑️ 清空</button>
+    </div>
+    <div class="ext-grid">
+      <div class="ext-card" onclick="wrongStart()"><div class="ext-emo">✍️</div><div class="ext-name">重新练习全部错题</div><div class="ext-desc">再挑战 ${list.length} 道</div></div>
+    </div>
+    <div class="card-q"><div class="q-text">📋 错题列表</div>
+    ${list.map((w,i)=>`<div class="wrong-item"><span class="wrong-n">${i+1}.</span>
+      <span class="wrong-q">${stripT(w.q).slice(0,30)}…</span>
+      <button class="wrong-del" onclick="wrongDel(${i})">✕</button></div>`).join('')}
+    </div>`;
+  show('screen-extend');
+}
+function wrongClear(){extState.wrong=[];xsave();renderWrong();toast('错题本已清空');}
+function wrongDel(i){extState.wrong.splice(i,1);xsave();renderWrong();}
+function wrongStart(){const list=extState.wrong.slice();if(list.length===0){toast('没有错题');return;}
+  const qs=list.map(w=>({q:w.q,sub:w.sub,options:w.options,answer:w.answer,exp:w.exp,optSmall:true}));
+  current={sub:'extend',grade:state.grade,type:'wrongquiz',quiz:qs,idx:0,correct:0,renderTo:'screen-extend',backFn:'openExtend',backLabel:'↩ 拓展',exam:false};
+  renderQuiz();}
+
+/* ================= 思维训练 ================= */
+function buildThinkQ(g){const qs=[];const seen=new Set();let guard=0;
+  while(qs.length<8&&guard++<200){
+    const k=qs.length%5;let q,ans,opts,exp,sub;
+    if(k===0){const a=2+rndInt(8),b=1+rndInt(4);q=`找规律：${a}, ${a+b}, ${a+2*b}, ${a+3*b}, （ ）`;ans=a+4*b;sub='每次增加相同的数';exp=`每次加 ${b}，所以最后一个数＝${a+3*b}+${b}＝${ans}。`;
+      const rr=numAnswer(ans,0,30);if(seen.has(q)){continue;}seen.add(q);qs.push({q,sub,options:rr.options,answer:rr.answer,exp});continue;}
+    else if(k===1){const n=3+rndInt(5);q=`排队：队伍里有 ${n} 人，小红前面有 2 人。小红的后面有几人？`;ans=n-3;sub='总人数减去前面的再减自己';exp=`${n}人里，去掉前面的2人和小红自己，后面还剩 ${ans} 人。`;
+      const optsAns=numAnswer(ans,0,10);opts=optsAns.options;
+      if(seen.has(q)){continue;}seen.add(q);qs.push({q,sub,options:opts,answer:optsAns.answer,exp});continue;}
+    else if(k===2){const a=2+rndInt(8);q=`年龄问题：小明今年 ${a} 岁，爸爸比小明大 30 岁。爸爸今年几岁？`;ans=a+30;sub='求较大的数用加法';exp=`爸爸＝${a}＋30＝${ans} 岁。`;
+      const r=numAnswer(ans,20,40);opts=r.options;if(seen.has(q)){continue;}seen.add(q);qs.push({q,sub,options:opts,answer:r.answer,exp});continue;}
+    else if(k===3){const pg=2+rndInt(9),arr=[pg,pg+2,pg+3].map(String);const mixed=shuffle([pg,pg-1,pg+1,pg+2].map(String)).slice(0,3);const r=strAnswer(String(pg),[pg-1,pg+1,pg+2].map(String));q=`小丽排第 ${pg} 个。她前面有几个人？（从第1个开始数）`;sub='排第几＝前面人数＋1';exp=`排第 ${pg} 个，去掉自己1个，前面有 ${pg-1} 人。`;
+      if(seen.has(q)){continue;}seen.add(q);qs.push({q,sub,options:r.options,answer:r.answer,exp});continue;}
+    else{const a=2+rndInt(8),b=2+rndInt(5);const tot=a+b;q=`数量关系：草地里原有 ${a} 只鸟，又飞来 ${b} 只。现在一共（ ）只。`;sub='合并用加法';exp=`${a}＋${b}＝${tot} 只。`;const r=numAnswer(tot,2,20);
+      if(seen.has(q)){continue;}seen.add(q);qs.push({q,sub,options:r.options,answer:r.answer,exp});continue;}
+  }
+  return qs;
+}
+function renderThink(){const qs=buildThinkQ(state.grade);current={sub:'extend',grade:state.grade,type:'think',quiz:qs,idx:0,correct:0,renderTo:'screen-extend',backFn:'openExtend',backLabel:'↩ 拓展',exam:false};renderQuiz();}
+
+/* ================= B站英语打卡 ================= */
+const BILI_PRESET=[
+  ['👶🏽','英语启蒙动画','瑞奇宝宝'],['🐣','自然拼读ABC','字母歌字母操'],['🦜','英语儿歌','super simple songs'],['📚','RAZ 分级阅读','英语绘本'],['🎶','Phonics歌谣','拼读律动'],['💬','日常英语口语','场景对话'],['📖','英语绘本故事','睡前英文故事'],['🎬','海尼曼精读','英语学习'],
+];
+function renderBili(){
+  const t=today();const done=!!extState.bili[t];
+  $('#screen-extend').innerHTML=`
+    <div class="quiz-head">
+      <button class="back" onclick="openExtend()">↩ 拓展</button>
+      <span class="q-label">📺 B站英语打卡 · ${t}</span>
+    </div>
+    <div class="hero" style="padding-top:6px"><div class="big">📺</div><h1>今天的英语视频</h1>
+      <p>选一条推荐视频学习，看完回来打卡吧！</p></div>
+    <div class="card-q"><div class="q-text">🎯 今日打卡状态：${done?'✅ 已完成':'⏳ 待完成'}</div>
+    ${BILI_PRESET.map((b,i)=>`<div class="plan-item" onclick="biliOpen(${i})">
+      <span class="plan-check">▶️</span><span class="plan-t">${b[0]} ${b[1]}</span><span class="plan-s">${b[2]}</span>
+    </div>`).join('')}
+    <div style="margin-top:14px" class="btn-row">
+      ${done?'<button class="btn go" style="min-width:100%" onclick="biliUncheck()">↩ 取消今日打卡</button>':
+      '<button class="btn go" style="min-width:100%" onclick="biliCheck()">✅ 我已看完，打卡！</button>'}
+    </div></div>`;
+  show('screen-extend');
+}
+function biliOpen(i){const b=BILI_PRESET[i];const kw=encodeURIComponent(b[1]);window.open('https://search.bilibili.com/all?keyword='+kw,'_blank');}
+function biliCheck(){const t=today();extState.bili[t]=true;xsave();renderBili();toast('🎉 打卡成功！明天也要坚持哦');}
+function biliUncheck(){const t=today();delete extState.bili[t];xsave();renderBili();}
+
+/* ================= 必备课文 ================= */
+const TEXTBOOK=[
+  [1,['🌱 小小的船','弯弯的月儿小小的船，小小的船儿两头尖。我在小小的船里坐，只看见闪闪的星星蓝蓝的天。'],['☀️ 我多想去看看','妈妈告诉我，沿着弯弯的小路，就能走出大山。你会带我去看看外面的世界吗？'],['🐦 雪地里的小画家','下雪啦，下雪啦！雪地里来了一群小画家。小鸡画竹叶，小狗画梅花，小鸭画枫叶，小马画月牙。']],
+  [2,['🍃 柳树醒了','春天来了，柳树醒了。柳枝软软的，柳叶绿绿的，柳絮飞啊飞。'],['🌈 找春天','早开的野花一朵两朵，那是春天的眼睛吧？'],['🦋 蝴蝶的家','青草绿叶中，藏着蝴蝶的家。小小的青草地，蝴蝶的家。']],
+  [3,['🌾 金色的草地','原来，蒲公英的花就像我们的手掌，可以张开、合上。花朵张开时，它是金色的。'],['🐬 燕子','一身乌黑光亮的羽毛，一对俊俏轻快的翅膀，加上剪刀似的尾巴，凑成了那样活泼的小燕子。'],['🍑 荷花','白荷花在这些大圆盘之间冒出来。有的才展开两三片花瓣儿，有的花瓣儿全展开了。']],
+  [4,['🌌 观潮','钱塘江大潮，自古以来被称为天下奇观。农历八月十八是一年一度的观潮日。'],['🍃 爬山虎的脚','爬山虎的脚长在茎上。茎上长叶柄的地方，反面伸出枝状的六七根细丝。'],['🏞️ 火烧云','天上的云从西边一直烧到东边，红彤彤的，好像是天空着了火。']],
+  [5,['😢 圆明园的毁灭','圆明园的毁灭是祖国文化史上不可估量的损失，也是世界文化史上不可估量的损失！'],['🌕 桂花雨','桂花的样子笨笨的，不像梅树那样有姿态。可是桂花的香气，太迷人了。'],['🐝 落花生','父亲说花生的好处很多，有一样最可贵：它的果实埋在地里，不像桃子、石榴那样把鲜红嫩绿的果实高高挂在枝头上。']],
+  [6,['⚰️ 匆匆','燕子去了，有再来的时候；杨柳枯了，有再青的时候；桃花谢了，有再开的时候。'],['🕊️ 卖火柴的小女孩','天冷极了，下着雪，又快黑了。这是一年的最后一夜——大年夜。'],['🌲 少年闰土','深蓝的天空中挂着一轮金黄的圆月，下面是海边的沙地，都种着一望无际的碧绿的西瓜。']],
+];
+function renderText(){
+  const g=state.grade;let books=TEXTBOOK.filter(x=>x[0]===Math.min(6,Math.max(1,g)));
+  if(books.length===0)books=TEXTBOOK.filter(x=>x[0]===1);
+  const bk=books[0]?books[0].slice(1):[];
+  $('#screen-extend').innerHTML=`
+    <div class="quiz-head"><button class="back" onclick="openExtend()">↩ 拓展</button><span class="q-label">📖 必备课文 · ${GRADE_NAME[state.grade-1]}</span></div>
+    <div class="hero" style="padding-top:6px"><div class="big">📖</div><h1>必备课文诵读</h1><p>点卡片听朗读，读一读背一背</p></div>
+    ${bk.map((b,i)=>`<div class="text-card" onclick="textSpeak(${i})">
+      <div class="text-title">${b[0]}</div><div class="text-body">${b[1]}</div>
+      <div class="text-act"><button class="ra-btn ra-listen" onclick="event.stopPropagation();speakZh('${String(b[1]).replace(/'/g,'').slice(0,80)}')">🔊 朗读</button></div>
+    </div>`).join('')}
+    <div class="btn-row"><button class="btn go" style="min-width:100%" onclick="openExtend()">↩ 返回拓展</button></div>`;
+  show('screen-extend');
+}
+function textSpeak(i){const g=state.grade;let books=TEXTBOOK.filter(x=>x[0]===Math.min(6,Math.max(1,g)));if(books.length===0)books=TEXTBOOK.filter(x=>x[0]===1);const bk=books[0].slice(1);const body=bk[i][1];speakZh(body.replace(/[^\\u4e00-\\u9fa5，。！？]/g,''));}
+
+/* ================= 口算练习 ================= */
+function buildOralQ(g){
+  const max=(g<=3)?20:g<=6?100:1000;const qs=[];const seen=new Set();let guard=0;
+  while(qs.length<20&&guard++<400){
+    let q,ans,sub,exp;
+    const op=qs.length%3;
+    if(op===0){const a=1+rndInt(max),b=1+rndInt(max-a);q=`${a} + ${b} = ?`;ans=a+b;sub='加法口算';exp=`${a}＋${b}＝${ans}。`;}
+    else if(op===1){const a=2+rndInt(max),b=1+rndInt(a-1);q=`${a} - ${b} = ?`;ans=a-b;sub='减法口算';exp=`${a}－${b}＝${ans}。`;}
+    else{const a=2+rndInt(Math.min(12,max)),b=2+rndInt(Math.min(9,12));q=`${a} × ${b} = ?`;ans=a*b;sub='乘法口算';exp=`${a}×${b}＝${ans}。`;}
+    if(seen.has(q))continue;seen.add(q);
+    const r=numAnswer(ans,0,Math.max(max*2,ans+10));qs.push({q,sub,options:r.options,answer:r.answer,exp,optSmall:true});
+  }
+  return qs;
+}
+let oralStartTime=0;
+function renderOral(){const qs=buildOralQ(state.grade);oralStartTime=Date.now();current={sub:'extend',grade:state.grade,type:'oral',quiz:qs,idx:0,correct:0,renderTo:'screen-extend',backFn:'openExtend',backLabel:'↩ 拓展',exam:false};renderQuiz();}
+
+/* ================= 应用题 ================= */
+function buildApplyQ(g){
+  const qs=[];const seen=new Set();let guard=0;
+  while(qs.length<8&&guard++<300){
+    const k=qs.length%4;let q,ans,sub,exp,optsArr;
+    if(k===0){const a=3+rndInt(20),b=3+rndInt(20);q=`小猫有 ${a} 条鱼，小猫又钓到了 ${b} 条。小猫现在一共有几条鱼？`;ans=a+b;sub='求一共用加法';exp=`${a}＋${b}＝${ans} 条。`;}
+    else if(k===1){const tot=8+rndInt(30),b=2+rndInt(tot-3);q=`苹果和梨一共有 ${tot} 个，其中苹果有 ${b} 个。梨有多少个？`;ans=tot-b;sub='求部分用减法';exp=`${tot}－${b}＝${ans} 个。`;}
+    else if(k===2){const a=2+rndInt(6),n=2+rndInt(4);q=`每盒铅笔有 ${a} 支，一共 ${n} 盒。总共有几支铅笔？`;ans=a*n;sub='求总数用乘法';exp=`${a}×${n}＝${ans} 支。`;}
+    else{const a=4+rndInt(16),n=2+rndInt(4);const d=a*n;q=`${d} 个苹果，平均分给 ${n} 个小朋友，每人分几个？`;ans=a;sub='平均分用除法';exp=`${d}÷${n}＝${a} 个。`;}
+    if(seen.has(q))continue;seen.add(q);
+    const r=numAnswer(ans,0,200);qs.push({q,sub,options:r.options,answer:r.answer,exp});
+  }
+  return qs;
+}
+function renderApply(){const qs=buildApplyQ(state.grade);current={sub:'extend',grade:state.grade,type:'apply',quiz:qs,idx:0,correct:0,renderTo:'screen-extend',backFn:'openExtend',backLabel:'↩ 拓展',exam:false};renderQuiz();}
+
+/* ================= 每日晨读 ================= */
+const MORNING_READ=[
+  ['古诗·春晓','春眠不觉晓，处处闻啼鸟。夜来风雨声，花落知多少。'],
+  ['古诗·静夜思','床前明月光，疑是地上霜。举头望明月，低头思故乡。'],
+  ['三字经（节选）','人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。'],
+  ['弟子规（节选）','弟子规，圣人训。首孝悌，次谨信。泛爱众，而亲仁。有余力，则学文。'],
+  ['美文·四季','春天，小草绿了；夏天，知了叫了；秋天，果子熟了；冬天，雪花飘了。'],
+  ['谚语·勤俭','书山有路勤为径，学海无涯苦作舟。黑发不知勤学早，白首方悔读书迟。'],
+  ['古诗·登鹳雀楼','白日依山尽，黄河入海流。欲穷千里目，更上一层楼。'],
+  ['古诗·悯农','锄禾日当午，汗滴禾下土。谁知盘中餐，粒粒皆辛苦。'],
+];
+function renderRead(){
+  const t=today();const done=!!extState.read[t];const idx=((today().split('-').pop())|0)%MORNING_READ.length;
+  const m=MORNING_READ[idx];
+  $('#screen-extend').innerHTML=`
+    <div class="quiz-head"><button class="back" onclick="openExtend()">↩ 拓展</button><span class="q-label">🌅 每日晨读 · ${t}</span></div>
+    <div class="hero" style="padding-top:6px"><div class="big">🌅</div><h1>今日晨读</h1><p>大声朗读，开启元气满满的一天！</p></div>
+    <div class="card-q">
+      <div class="text-title" style="text-align:center">${m[0]}</div>
+      <div class="read-poem">${m[1]}</div>
+      <div class="btn-row">
+        <button class="ra-btn ra-listen" style="min-width:46%" onclick="speakZh('${String(m[1]).replace(/'/g,'')}')">🔊 听示范朗读</button>
+        <button class="ra-btn ra-go" style="min-width:46%" onclick="readAlong('${String(m[1]).replace(/'/g,'')}','zh-CN','readRes',2)">🎤 跟读</button>
+      </div>
+      <div id="readRes" style="width:100%"></div>
+      <div style="margin-top:12px" class="btn-row">
+        ${done?'<button class="btn go" style="min-width:100%" onclick="readUncheck()">↩ 取消完成</button>':
+        '<button class="btn go" style="min-width:100%" onclick="readCheck()">✅ 朗读完成，打卡！</button>'}
+      </div>
+    </div>`;
+  show('screen-extend');
+}
+function readCheck(){const t=today();extState.read[t]=true;xsave();renderRead();toast('🌅 晨读完成，太棒了！');}
+function readUncheck(){const t=today();delete extState.read[t];xsave();renderRead();}
 function openSubject(sub){current.sub=sub;renderSubjectScreen(sub);show('screen-subject');}
 function renderSubjectScreen(sub){
   const games=GAMES[sub][state.grade];
@@ -1710,8 +2020,13 @@ function startQuiz(type){
 /* ================= 试卷考试 ================= */
 /* 从当前学科的一个或多个小游戏抽取题目，拼成一张20题的试卷 */
 const EXAM_Q=20;
+/* current 以隐式全局赋值使用，需初始化为对象，否则首次点击科目（openSubject：current.sub=...）会因 undefined 抛错 */
+var current={};
 function buildExam(sub,g){
-  const prevSub=current.sub,prevGrade=state.grade;
+  const hadCurrent=!!current;
+  const prevSub=hadCurrent?current.sub:undefined;
+  const prevGrade=hadCurrent?current.grade:g;
+  if(!hadCurrent)current={};
   current.sub=sub;state.grade=g;
   try{
   const types=(GAMES[sub][g]||[]).map(c=>c[3]);
@@ -1721,7 +2036,10 @@ function buildExam(sub,g){
   for(const q of pool){const k=stripT(q.q);if(!seen.has(k)){seen.add(k);out.push(q);}if(out.length>=EXAM_Q)break;}
   if(out.length<EXAM_Q&&types.length>0){let tries=0;while(out.length<EXAM_Q&&tries++<60){const t=pick(types);for(const q of (buildFor(t,g)||[])){const k=stripT(q.q);if(!seen.has(k)){seen.add(k);out.push(q);}if(out.length>=EXAM_Q)break;}}}
   return out.slice(0,EXAM_Q);
-  }finally{current.sub=prevSub;current.grade=prevGrade;state.grade=prevGrade;}
+  }finally{
+    if(hadCurrent){current.sub=prevSub;current.grade=prevGrade;state.grade=prevGrade;}
+    else state.grade=g;
+  }
 }
 function startExam(sub){
   const paper=buildExam(sub,state.grade);
@@ -1800,9 +2118,10 @@ function refreshSubject(){renderSubjectScreen(current.sub);}
 function renderQuiz(){
   current.answered=false;           // 渲染新一题时解锁作答，避免上一题的锁定残留
   const q=current.quiz[current.idx];
-  $('#screen-subject').innerHTML=`
+  const RT=current.renderTo||'screen-subject';const bf=current.backFn||'refreshSubject';const bl=current.backLabel||'✕ 退出';
+  $('#'+RT).innerHTML=`
     <div class="quiz-head">
-      <button class="back" onclick="refreshSubject()">✕ 退出</button>
+      <button class="back" onclick="${bf}()">${bl}</button>
       <span class="q-label">${current.idx+1} / ${current.quiz.length}</span>
       ${current.changed?`<span class="fresh">✨ 新题</span>`:''}
       <div class="progress"><i style="width:${current.idx/current.quiz.length*100}%"></i></div>
@@ -1824,6 +2143,7 @@ function renderQuiz(){
       <div class="action-bar"><button class="btn btn-next" id="nextBtn" onclick="nextQ()">→ 下一题</button></div>
     </div>`;
   const qq=current.quiz[current.idx];if(qq&&qq.autoSay)setTimeout(()=>speakZh(qq.autoSay),350);
+  show(RT);
 }
 function choose(el,i){
   if(current.answered)return;current.answered=true;
@@ -1836,6 +2156,7 @@ function choose(el,i){
     if(event&&event.clientX){floatText(event.clientX,event.clientY,'+5 ⭐');burst(event.clientX,event.clientY,gstyle(current.grade).emoji);}
     if(q.sound)speakEn(q.sound);
   }else{el.classList.add('wrong');opts[q.answer].classList.add('correct');playSound('wrong');addXp(1);
+    recordWrong(q);
     fb.className='feedback no';fb.innerHTML='就差一点点，正确答案是：'+(q.options[q.answer]||'')+expHtml;}
   $('#nextBtn').textContent=(current.idx===current.quiz.length-1)?'🎉 交卷评分':'→ 下一题';
 }
@@ -1868,29 +2189,32 @@ function finishExam(){
     </div>`;
 }
 function finishQuiz(){
+  const RT=current.renderTo||'screen-subject';
   const total=current.quiz.length,correct=current.correct,pct=Math.round(correct/total*100);
   const stars=pct>=90?3:pct>=70?2:pct>=50?1:0;
   const title=pct>=90?'🌟 太棒了！':pct>=70?'😄 真不错！':pct>=50?'💪 继续加油！':'🎯 再练一次吧';
   const lv=levelOf(state.grade);
-  const badgeKey={chinese:{easy:'c1',mid:'c2',hard:'c3'},math:{easy:'m1',mid:'m2',hard:'m3'},english:{easy:'e1',mid:'e2',hard:'e3'}}[current.sub][lv];
-  let newB='';
-  if(pct>=70&&!state.badges.includes(badgeKey)){newB='<div class="new-badge">🏆 解锁徽章：'+BADGE_NAME[badgeKey]+'</div>';grantBadge(badgeKey);}
+  let badgeKey=null,newB='';
+  if(!current.renderTo&&current.sub&&SUB_INFO[current.sub]){badgeKey={chinese:{easy:'c1',mid:'c2',hard:'c3'},math:{easy:'m1',mid:'m2',hard:'m3'},english:{easy:'e1',mid:'e2',hard:'e3'}}[current.sub][lv];
+    if(pct>=70&&!state.badges.includes(badgeKey)){newB='<div class="new-badge">🏆 解锁徽章：'+BADGE_NAME[badgeKey]+'</div>';grantBadge(badgeKey);}}
   addXp(correct*3);celebrate(state.grade);updateTop();
-  $('#screen-subject').innerHTML=`
-    <div class="quiz-head"><button class="back" onclick="goHome()">🏠 首页</button></div>
+  const subName=current.renderTo?'拓展学习':(SUB_INFO[current.sub]?SUB_INFO[current.sub][0][1]:'学习');
+  $('#'+RT).innerHTML=`
+    <div class="quiz-head"><button class="back" onclick="${current.renderTo?'openExtend()':'goHome()'}">🏠 返回</button></div>
     <div class="result-box">
       <div class="confetti">${pct>=90?'🎉':pct>=70?'😃':'💪'}</div>
       <div class="result-title">${title}</div>
-      <div class="result-sub">${SUB_INFO[current.sub][0][1]} · ${GRADE_NAME[state.grade-1]} · ${typeName(current.type)}</div>
+      <div class="result-sub">${subName} · ${GRADE_NAME[state.grade-1]} · ${typeName(current.type)}</div>
       <div class="score-line">${correct} / ${total}</div>
       <div class="stars">${[1,2,3].map(s=>`<span class="star ${s<=stars?'on':''}">⭐</span>`).join('')}</div>
       <div style="font-size:14px;font-weight:700;color:#8294b0">正确率 ${pct}%</div>
       ${newB}
-      <div class="fresh-tip">✅ 已为你准备好一批新题目（随机题绝不重复），点下面按钮立即换新题！</div>
+      ${current.renderTo?'':`<div class="fresh-tip">✅ 已为你准备好一批新题目（随机题绝不重复），点下面按钮立即换新题！</div>`}
       <div class="btn-row">
-        <button class="btn go" onclick="startQuiz('${current.type}')">🔄 换一批新题</button>
+        ${current.renderTo?`<button class="btn go" onclick="wrongStart()">🔄 再练一次错题</button>
+        <button class="btn go" style="min-width:100%" onclick="renderWrong()">🩹 返回错题本</button>`:`<button class="btn go" onclick="startQuiz('${current.type}')">🔄 换一批新题</button>
         <button class="btn go" style="background:linear-gradient(135deg,var(--gold),#ffab2e);color:#5a3a00" onclick="refreshSubject()">🎮 换个游戏</button>
-        <button class="btn go" style="min-width:100%" onclick="goHome()">🏠 回首页</button>
+        <button class="btn go" style="min-width:100%" onclick="goHome()">🏠 回首页</button>`}
       </div>
     </div>`;
 }
@@ -2119,6 +2443,371 @@ function installApp(){if(!installPrompt)return;installPrompt.prompt();installPro
     window.addEventListener('appinstalled',()=>{const b=$('#installBtn');if(b)b.classList.remove('show');try{if(typeof toast==='function')toast('🎉 已安装！去手机桌面打开吧');}catch(err){}});
   }catch(err){}
 })();
+
+/* ===== 益智游戏：训练专注力与耐心 ===== */
+let pz={null:null};let pzSave={};const PZ_KEY='funPuzzle';
+function pzLoad(){try{const s=JSON.parse(localStorage.getItem(PZ_KEY)||'null');if(s)pzSave=s;}catch(e){}}
+function pzStore(){try{localStorage.setItem(PZ_KEY,JSON.stringify(pzSave));}catch(e){}}
+function pzClearTimer(){try{if(pz&&pz.timer)clearInterval(pz.timer);}catch(e){}}
+function pzStars(ok){return Math.max(1,Math.min(3,Math.ceil(ok*3)));}
+pzLoad();
+function pzHead(emo,name,note){return `<div class="quiz-head"><button class="back" onclick="renderPuzzleHome()">↩ 益智</button><span class="q-label">🎯 益智游戏 · ${name}</span></div>
+  <div class="hero" style="padding-top:6px"><div class="big">${emo}</div><h1>${name}</h1><p>${note}</p></div>`;}
+function renderPuzzleHome(){
+  const cards=[
+    ['🎯','舒尔特方格','schulte','静下心，按顺序快速点完所有数字',pzSave.schulte||0],
+    ['🃏','记忆翻牌','memory','翻卡片找相同，考验记忆与耐心',pzSave.memory||0],
+    ['🔍','找找小星星','spot','只把星星点出来，练视觉专注',pzSave.spot||0],
+    ['🔢','数字小侦探','digits','记住一串数字，练短时记忆',pzSave.digits||0],
+    ['🔤','英语单词','words','看中文，快速找对英文单词',pzSave.words||0],
+    ['🧩','找不同','finddiff','两幅图里找出不一样的地方',pzSave.finddiff||0],
+  ];
+  $('#screen-puzzle').innerHTML=`
+    <div class="quiz-head"><button class="back" onclick="goHome()">🏠 首页</button><span class="q-label">🎯 益智游戏</span></div>
+    <div class="hero" style="padding-top:6px"><div class="big">🎯</div><h1>专注力训练营</h1>
+      <p>静下心完成任务，意想不到的事就会发生。</p></div>
+    <div class="ext-grid">
+      ${cards.map(c=>`<div class="ext-card" onclick="renderPuzzleGame('${c[2]}')">
+        <div class="ext-emo">${c[0]}</div><div class="ext-name">${c[1]}</div><div class="ext-desc">${c[3]}<br>🏅 最高 ${'⭐'.repeat(c[4]||0)||'—'}</div>
+      </div>`).join('')}
+    </div>`;
+  show('screen-puzzle');
+}
+function renderPuzzleGame(kind){({schulte:renderSchulte,memory:renderMemory,spot:renderSpot,digits:renderDigits,words:renderWords,finddiff:renderFindDiff}[kind])();}
+function openPuzzle(){renderPuzzleHome();}
+function pzFinish(kind,emo,name,sec,miss,stars,replayFn,replayLabel){
+  pzClearTimer();if(!pz)pz={};pz.done=true;
+  const best=pzSave[kind]||0;const nb=stars>best;
+  if(nb){pzSave[kind]=stars;pzStore();}
+  if(stars>=2)addXp(stars*2);
+  $('#screen-puzzle').innerHTML=`
+    <div class="quiz-head"><button class="back" onclick="renderPuzzleHome()">↩ 益智</button><span class="q-label">🎯 益智游戏</span></div>
+    <div class="card-q" style="text-align:center;padding:26px 18px">
+      <div style="font-size:46px">${emo}</div>
+      <div style="font-size:20px;font-weight:900;color:#2a3a55;margin-top:8px">🎉 ${name}完成！</div>
+      <div class="pz-star">${'⭐'.repeat(stars)}<span style="opacity:.25">${'⭐'.repeat(3-stars)}</span></div>
+      <div class="pz-stat"><b>⏱ ${sec.toFixed(1)} 秒</b><b>❌ 失误 ${miss} 次</b><b>🌟 ${stars}/3</b>${nb?'<b style="color:#d48806">🏅 新纪录!</b>':''}</div>
+      <div style="font-size:14px;color:#8a9ab8;font-weight:700">专注力 +${stars*2}</div>
+      ${stars>=3?'<div class="new-badge">🌈 专注大师，太棒啦！</div>':stars===2?'<div class="new-badge">👍 继续加油！</div>':''}
+      <div class="btn-row">
+        <button class="btn go" onclick="${replayFn}()">${replayLabel}</button>
+        <button class="btn go" style="background:linear-gradient(135deg,var(--gold),#ffab2e);color:#5a3a00" onclick="renderPuzzleHome()">🎯 更多游戏</button>
+      </div>
+    </div>`;
+  show('screen-puzzle');
+}
+/* ——— 舒尔特方格 ——— */
+function renderSchulte(){
+  const g=state.grade,n=(g<=1?3:g<=4?4:5),tot=n*n;
+  pzClearTimer();pz={n,tot,next:1,miss:0,start:Date.now(),done:false};
+  const nums=shuffle(Array.from({length:tot},(_,i)=>i+1));
+  $('#screen-puzzle').innerHTML=pzHead('🎯','舒尔特方格','按顺序快速点 1 → '+tot+'，眼到心到手到！')+`
+    <div class="pz-stat"><b>⏱ <span id="pzTime">0.0</span> 秒</b><b>🎯 下一个 <span id="pzNext">1</span></b><b>❌ <span id="pzMiss">0</span></b></div>
+    <div class="pz-board" style="grid-template-columns:repeat(${n},64px)">
+      ${nums.map(v=>`<div class="pz-cell" style="width:64px;height:64px" onclick="schulteCell(this,${v})">${v}</div>`).join('')}
+    </div>
+    <div class="pz-memo" style="text-align:center">别急，先找到数字 1！点错了会变红，不算太坏。</div>
+    <div class="btn-row"><button class="btn go" style="min-width:100%" onclick="renderSchulte()">🔁 再来一局</button></div>`;
+  show('screen-puzzle');
+  pz.timer=setInterval(()=>{const e=$('#pzTime');if(e&&!pz.done)e.textContent=((Date.now()-pz.start)/1000).toFixed(1);},100);
+}
+function schulteCell(el,v){
+  if(!pz||pz.done)return;
+  if(v===pz.next){el.classList.add('done');pz.next++;
+    if(pz.next<=pz.tot){const e=$('#pzNext');if(e)e.textContent=pz.next;playSound('correct',state.grade);}
+    else{const sec=(Date.now()-pz.start)/1000;const ideal=6.0*pz.n;const ok=Math.min(1,1-Math.min(1,(sec/pz.n-1)/ (6-1))*0)+(pz.miss?Math.max(0,1-pz.miss/(pz.tot*0.3)):1);const stars=pzStars((Math.min(1,ideal/sec))*0.6+ (pz.miss===0?0.4:pz.miss<3?0.2:0));pzFinish('schulte','🎯','舒尔特方格',sec,pz.miss,stars,'renderSchulte','🔁 再来一局');}
+  }else{el.classList.add('ceil');setTimeout(()=>el.classList.remove('ceil'),320);pz.miss++;const e=$('#pzMiss');if(e)e.textContent=pz.miss;}
+}
+/* ——— 记忆翻牌 ——— */
+const PZ_MEMO=['🍎','🍌','🍇','🍓','🐶','🐱','🐰','🦄','⚽','🎈','💎','⭐'];
+function renderMemory(){
+  const g=state.grade,pairs=(g<=2?6:g<=5?8:10);
+  pzClearTimer();const pool=shuffle(PZ_MEMO).slice(0,pairs);
+  const deck=shuffle([...pool,...pool]);
+  pz={kind:'memory',pairs,deck,open:[],matched:0,miss:0,moves:0,start:Date.now(),done:false,lock:false};
+  $('#screen-puzzle').innerHTML=pzHead('🃏','记忆翻牌','翻开两张卡片，找到一样的配对！')+`
+    <div class="pz-stat"><b>⏱ <span id="pzTime">0.0</span> 秒</b><b>🎴 <span id="pzFound">0</span>/${pairs}</b><b>🎬 翻牌 <span id="pzMove">0</span></b></div>
+    <div class="pz-board" style="grid-template-columns:repeat(${4},74px)" id="pzMemoBoard">
+      ${deck.map((e,i)=>`<div class="pz-cell face hidden" style="width:74px;height:74px" onclick="memoCell(this,${i})">?</div>`).join('')}
+    </div>
+    <div class="pz-memo" style="text-align:center">翻两张，一样就留下，不一样会扣回去，要有耐心~</div>`;
+  show('screen-puzzle');
+  pz.timer=setInterval(()=>{const e=$('#pzTime');if(e&&!pz.done)e.textContent=((Date.now()-pz.start)/1000).toFixed(1);},100);
+}
+function memoCell(el,i){
+  if(!pz||pz.done||pz.lock||el.classList.contains('done'))return;
+  if(pz.open.includes(i))return;
+  el.textContent=pz.deck[i];el.classList.remove('hidden');pz.open.push(i);
+  if(pz.open.length===2){
+    pz.moves++;const [a,b]=pz.open;const ea=pz.deck[a],eb=pz.deck[b];
+    const cells=document.querySelectorAll('#pzMemoBoard .pz-cell');const elA=cells[a],elB=cells[b];
+    if(ea===eb){elA.classList.add('done');elB.classList.add('done');pz.matched++;const e=$('#pzFound');if(e)e.textContent=pz.matched;const em=$('#pzMove');if(em)em.textContent=pz.moves;
+      pz.open=[];if(pz.matched===pz.pairs){const sec=(Date.now()-pz.start)/1000;const ideal=pz.pairs*1.6+pz.pairs;const ok=Math.max(0,1-(pz.moves-pz.pairs)/(pz.pairs));const stars=pzStars((Math.min(1,ideal/sec))*0.5+ok*0.5);pzFinish('memory','🃏','记忆翻牌',sec,pz.moves-pz.pairs,stars,'renderMemory','🔁 再来一局');}
+    }else{elA.classList.add('ceil');elB.classList.add('ceil');pz.lock=true;setTimeout(()=>{elA.classList.remove('ceil');elB.classList.remove('ceil');elA.classList.add('hidden');elB.classList.add('hidden');elA.textContent='?';elB.textContent='?';pz.open=[];pz.lock=false;},650);}
+  }
+}
+/* ——— 找找小星星（视觉专注） ——— */
+function renderSpot(){
+  const g=state.grade,n=(g<=3?5:6),tot=n*n,targets=(n===5?6:9);
+  const target=pick(['⭐','🌈','🔺','♣']);
+  pzClearTimer();const marks=shuffle([...Array(targets).fill(1),...Array(tot-targets).fill(0)]);
+  pz={n,target,targets,found:0,miss:0,marks,start:Date.now(),done:false};
+  $('#screen-puzzle').innerHTML=pzHead('🔍','找找小星星','在一堆圆点里，把所有的「'+target+'」点出来！'+`（共 ${targets} 个）`)+`
+    <div class="pz-stat"><b>⏱ <span id="pzTime">0.0</span> 秒</b><b>🔍 已找到 <span id="pzFound">0</span>/${targets}</b><b>❌ <span id="pzMiss">0</span></b></div>
+    <div class="pz-memo" style="text-align:center">目标符号：<span style="font-size:26px">${target}</span>，只点它，别点圆点 ●</div>
+    <div class="pz-board" style="grid-template-columns:repeat(${n},54px)">
+      ${marks.map((isT,i)=>`<div class="pz-cell ${isT?'':'noise'}" style="width:54px;height:54px" onclick="spotCell(this,${i})">${isT?target:'●'}</div>`).join('')}
+    </div>
+    <div class="pz-memo" style="text-align:center">要又快又准，眼睛扫过去一个一个看，别跳。</div>`;
+  show('screen-puzzle');
+  pz.timer=setInterval(()=>{const e=$('#pzTime');if(e&&!pz.done)e.textContent=((Date.now()-pz.start)/1000).toFixed(1);},100);
+}
+function spotCell(el,i){
+  if(!pz||pz.done||el.classList.contains('target-found')||el.classList.contains('target-miss'))return;
+  if(pz.marks[i]===1){el.classList.add('target-found');el.textContent='✔';pz.found++;const e=$('#pzFound');if(e)e.textContent=pz.found;if(pz.found===pz.targets){const sec=(Date.now()-pz.start)/1000;const ideal=pz.n*2.4+pz.targets*1.5;const stars=pzStars((pz.miss===0?0.45:(1-Math.min(1,pz.miss/6))*0.2)+Math.min(1,ideal/sec)*0.55);pzFinish('spot','🔍','找找小星星',sec,pz.miss,stars,'renderSpot','🔁 再来一局');}}
+  else{el.classList.add('target-miss');setTimeout(()=>el.classList.remove('target-miss'),300);pz.miss++;const e=$('#pzMiss');if(e)e.textContent=pz.miss;el.textContent='●';}
+}
+/* ——— 数字小侦探（短时记忆） ——— */
+function renderDigits(){
+  const g=state.grade,len=(g<=2?3:g<=4?5:g<=6?6:8);
+  const seq=Array.from({length:len},()=>rndInt(10));
+  pzClearTimer();pz={kind:'digits',seq,cur:0,tries:0,miss:0,start:Date.now(),done:false,pointer:0};
+  const showMs=Math.max(1500,len*650);
+  $('#screen-puzzle').innerHTML=pzHead('🔢','数字小侦探','记住这串数字，它马上会藏起来！')+`
+    <div class="card-q" style="text-align:center">
+      <div style="font-size:16px;color:#8a9ab8;font-weight:800;margin-bottom:8px">仔细看，记住它 👀</div>
+      <div id="pzShowSeq" style="font-size:42px;font-weight:900;letter-spacing:8px;color:var(--math)">${seq.join(' ')}</div>
+    </div>
+    <div class="pz-memo" style="text-align:center">记忆时间 ${(showMs/1000).toFixed(0)} 秒后请你还原</div>`;
+  show('screen-puzzle');
+  pz.timer=setTimeout(()=>renderDigitsInput(),showMs);
+}
+function renderDigitsInput(){
+  const g=state.grade,len=pz.seq.length;
+  $('#screen-puzzle').innerHTML=pzHead('🔢','数字小侦探','按顺序点数字，还原出刚才那串号码')+`
+    <div class="pz-stat"><b>⏱ <span id="pzTime">0</span> 秒</b><b>🎯 已填 <span id="pzFill">0</span>/${len}</b><b>❌ <span id="pzMiss">0</span></b></div>
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px 0" id="pzSlots"></div>
+    <div class="pz-board" style="grid-template-columns:repeat(5,58px)">
+      ${[0,1,2,3,4,5,6,7,8,9].map(d=>`<div class="pz-cell" style="width:58px;height:52px" onclick="digitPad(${d})">${d}</div>`).join('')}
+      <div class="pz-cell" style="width:58px;height:52px;background:#ffe3e3;border-color:#ffb4b4" onclick="digitBack()">⌫</div>
+    </div>
+    <div class="pz-memo" style="text-align:center">填满了会自动检查，错了会再让你看一遍，别灰心。</div>`;
+  renderSlots();
+  pzClearTimer();
+  pz.start=Date.now();
+  pz.timer=setInterval(()=>{const e=$('#pzTime');if(e&&!pz.done)e.textContent=Math.floor((Date.now()-pz.start)/1000);},500);
+}
+let _pzFill=[];
+function initFill(){_pzFill=[];}
+function renderSlots(){
+  const boxes=$('#pzSlots');
+  let html='';
+  for(let i=0;i<pz.seq.length;i++){
+    const v=_pzFill[i];
+    html+=`<div class="pz-cell ${v==null?'':'done'}" style="width:34px;height:40px;font-size:20px;min-width:34px">${v==null?'·':v}</div>`;
+  }
+  boxes.innerHTML=html;
+}
+function digitPad(d){
+  if(!pz||pz.done)return;
+  if(_pzFill.length>=pz.seq.length)return;
+  _pzFill.push(d);renderSlots();
+  if(_pzFill.length===pz.seq.length)digitCheck();
+}
+function digitBack(){if(_pzFill.length>0){_pzFill.pop();renderSlots();}}
+function digitCheck(){
+  if(_pzFill.join('')===pz.seq.join('')){const sec=(Date.now()-pz.start)/1000;const ideal=pz.seq.length*1.2+pz.seq.length*1.5;const stars=pzStars((pz.tries<=1?0.5:pz.tries<=2?0.25:0)+Math.min(1,ideal/sec)*0.5);pzFinish('digits','🔢','数字小侦探',sec,pz.tries,stars,'renderDigits','🔁 再来一局');}
+  else{pz.tries++;pz.miss=pz.tries;const e=$('#pzMiss');if(e)e.textContent=pz.tries;
+    $('#screen-puzzle').innerHTML=pzHead('🔢','数字小侦探','再仔细看一次，这次记住它！')+`
+      <div class="card-q" style="text-align:center">
+        <div style="font-size:16px;color:#8a9ab8;font-weight:800;margin-bottom:8px">记住它 👀（错了一次，别放弃）</div>
+        <div style="font-size:42px;font-weight:900;letter-spacing:8px;color:var(--math)">${pz.seq.join(' ')}</div>
+      </div>`;
+    show('screen-puzzle');
+    pzClearTimer();
+    pz.timer=setTimeout(()=>{initFill();_pzFill=[];renderDigitsInput();},Math.max(1600,pz.seq.length*700));
+  }
+}
+/* ——— 英语单词（认词专注） ——— */
+const PZ_WORDS=[
+  ['cat','猫','🐱'],['dog','狗','🐶'],['apple','苹果','🍎'],['banana','香蕉','🍌'],['ball','球','⚽'],
+  ['cap','帽子','🎩'],['rain','雨','🌧️'],['sun','太阳','☀️'],['fish','鱼','🐟'],['bird','鸟','🐦'],
+  ['milk','牛奶','🥛'],['rice','米饭','🍚'],['tree','树','🌳'],['car','汽车','🚗'],['book','书','📚'],
+  ['cake','蛋糕','🍰'],['egg','鸡蛋','🥚'],['eye','眼睛','👁️'],['hand','手','✋'],['red','红色','🔴'],
+  ['blue','蓝色','🔵'],['star','星星','⭐'],['moon','月亮','🌙'],['ship','船','🚢'],
+  ['tiger','老虎','🐯'],['dragon','龙','🐉'],['school','学校','🏫'],['teacher','老师','👩‍🏫'],['family','家庭','👨‍👩‍👧'],
+  ['flower','花','🌸'],['water','水','💧'],['bread','面包','🍞'],['happy','开心','😊'],['friend','朋友','🧒'],
+  ['umbrella','雨伞','☂️'],['lion','狮子','🦁'],['rabbit','兔子','🐇'],['turtle','乌龟','🐢'],['elephant','大象','🐘'],
+  ['butterfly','蝴蝶','🦋'],['garden','花园','🌷'],['mountain','山','⛰️'],['river','小河','🏞️'],['phone','电话','📱'],
+  ['computer','电脑','💻'],['music','音乐','🎵'],['panda','熊猫','🐼'],['guitar','吉他','🎸'],['cloud','云朵','☁️'],
+  ['present','礼物','🎁'],['window','窗户','🪟'],['dance','跳舞','💃'],['jump','跳跃','🤸'],['swim','游泳','🏊'],
+  ['sleep','睡觉','😴'],['snowman','雪人','⛄'],['candy','糖果','🍬'],['honey','蜂蜜','🍯'],['fox','狐狸','🦊']
+];
+function pickWords(g){
+  const pool = g<=2 ? PZ_WORDS.slice(0,18) : g<=4 ? PZ_WORDS.slice(0,34) : PZ_WORDS;
+  const qs = shuffle(pool.slice()); return qs.slice(0, Math.min(qs.length, g<=2?8 : g<=4?10 : 12));
+}
+function renderWords(){
+  const g=state.grade;
+  pzClearTimer();pz={kind:'words',qs:pickWords(g),idx:0,correct:0,miss:0,start:Date.now(),done:false,lock:false,used:0,round:1};
+  wordsRenderCurrent();
+}
+function wordsRenderCurrent(){
+  if(!pz||pz.done)return;
+  const q=pz.qs[pz.idx];if(!q){wordsWin();return;}
+  const dist=shuffle(pz.qs.filter(x=>x[0]!==q[0])).slice(0,3).map(x=>x[0]);
+  const opts=shuffle([q[0],...dist]);
+  $('#screen-puzzle').innerHTML=pzHead('🔤','英语单词','看中文，选出对应的英文单词！')+`
+    <div class="pz-stat"><b>⏱ <span id="pzTime">0.0</span> 秒</b><b>✅ <span id="pzOk">${pz.correct}</span></b><b>❌ <span id="pzMiss">${pz.miss}</span></b><b>🎯 ${pz.idx+1}/${pz.qs.length}</b></div>
+    <div class="card-q" style="text-align:center">
+      <div style="font-size:56px">${q[2]}</div>
+      <div style="font-size:26px;font-weight:900;color:#2a3a55;margin-top:6px">${q[1]}</div>
+      <div style="font-size:13px;color:#8a9ab8;font-weight:700;margin-top:4px">请选英文单词</div>
+    </div>
+    <div class="pz-board" style="grid-template-columns:repeat(2,130px)">
+      ${opts.map(w=>`<div class="pz-cell" style="width:130px;height:60px;font-size:24px;text-transform:capitalize" onclick="wordsPick(this,'${w}')">${w}</div>`).join('')}
+    </div>
+    <div style="text-align:center;margin-top:10px"><div class="pz-bar" style="max-width:260px;margin:0 auto"><i style="width:${(pz.idx/pz.qs.length)*100}%"></i></div><div class="pz-memo">第 ${pz.round} 轮 · 静下心看清词形</div></div>`;
+  show('screen-puzzle');
+  if(!pz.timer){pz.timer=setInterval(()=>{const e=$('#pzTime');if(e&&!pz.done)e.textContent=((Date.now()-pz.start)/1000).toFixed(1);},100);}
+}
+function wordsPick(el,word){
+  if(!pz||pz.done||pz.lock)return;
+  const q=pz.qs[pz.idx];
+  if(word===q[0]){pz.correct++;el.classList.add('done');pz.lock=true;setTimeout(()=>{pz.idx++;pz.lock=false;wordsRenderCurrent();},260);}
+  else{el.classList.add('ceil');setTimeout(()=>el.classList.remove('ceil'),380);pz.miss++;const e=$('#pzMiss');if(e)e.textContent=pz.miss;const ol=$('#pzOk');if(ol)ol.textContent=pz.correct;}
+}
+function wordsWin(){
+  pzClearTimer();pz.done=true;
+  // 星级：正确率 + 用时
+  const sec=(Date.now()-pz.start)/1000;
+  const ideal=pz.qs.length*8; // 每题约8秒充裕时间
+  const acc=pz.correct/pz.qs.length;
+  const stars=pzStars((acc>=1?0.5:acc>=0.7?0.25:0)+(sec>0?Math.min(1,ideal/sec):0)*0.35 + (pz.miss===0?0.15:0));
+  pzFinish('words','🔤','英语单词',sec,pz.miss,stars,'renderWords','🔁 再来一局');
+}
+/* ——— 找不同（视觉分辨专注） ——— */
+const PZ_DIFF=['🍎','🍌','🍇','🍓','🍊','🍑','🍈','🍒','🫐','🍋','🌶️','🍄'];
+function renderFindDiff(){
+  const g=state.grade,n=(g<=2?3:g<=4?4:5),tot=n*n,diff=(g<=2?3:g<=4?5:8);
+  pzClearTimer();
+  // 原图：每格一个图案；相异：随机 diff 个格子换成另一个图案
+  const base=Array.from({length:tot},()=>pick(PZ_DIFF));
+  const diffIdx=shuffle(Array.from({length:tot},(_,i)=>i)).slice(0,Math.min(diff,tot));
+  const diffMap={};
+  diffIdx.forEach(i=>{
+    let alt=pick(PZ_DIFF);let guard=0;
+    while(alt===base[i]&&guard<8){alt=pick(PZ_DIFF);guard++;}
+    diffMap[i]=alt;
+  });
+  pz={kind:'finddiff',n,tot,diff,diffIdx,diffMap,found:0,miss:0,start:Date.now(),done:false};
+  const cell=(i,right,isDiff)=>{const content=right?(diffMap[i]||base[i]):base[i];const diffClass=isDiff&&right?` class="pz-cell diff-cell"`:' class="pz-cell"';
+    const cw=n===3?96:n===4?72:58;
+    return `<div${diffClass} style="width:${cw}px;height:${cw}px;font-size:${n===3?34:n===4?30:24}px" onclick="findDiffCell(this,${i})">${content}</div>`;};
+  $('#screen-puzzle').innerHTML=pzHead('🧩','找不同','找出右边的图里，和左边不一样的地方！')+`
+    <div class="pz-stat"><b>⏱ <span id="pzTime">0.0</span> 秒</b><b>🔍 已找到 <span id="pzFound">0</span>/${diff}</b><b>❌ <span id="pzMiss">0</span></b></div>
+    <div class="pz-memo" style="text-align:center">左图是原图，右图里有 ${diff} 处不同，点击右边图中不同的格子</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px">
+      <div><div style="text-align:center;font-weight:900;color:#4f9df7;margin-bottom:4px">原图</div>
+        <div class="pz-board" style="grid-template-columns:repeat(${n},${n===3?96:n===4?72:58}px)">${Array.from({length:tot},(_,i)=>cell(i,false)).join('')}</div></div>
+      <div><div style="text-align:center;font-weight:900;color:#2a3a55;margin-bottom:4px">找不同（点这里）</div>
+        <div class="pz-board" style="grid-template-columns:repeat(${n},${n===3?96:n===4?72:58}px)">${Array.from({length:tot},(_,i)=>cell(i,true)).join('')}</div></div>
+    </div>
+    <div class="pz-memo" style="text-align:center;margin-top:8px">一格一格对比，先找相同规律，特别的地方就是答案</div>`;
+  show('screen-puzzle');
+  pz.timer=setInterval(()=>{const e=$('#pzTime');if(e&&!pz.done)e.textContent=((Date.now()-pz.start)/1000).toFixed(1);},100);
+}
+function findDiffCell(el,i){
+  if(!pz||pz.done)return;
+  if(pz.found!==undefined&&pz.findDiffFound&&pz.findDiffFound[i])return; // guard
+  pz.findDiffFound=pz.findDiffFound||{};
+  if(!(i in pz.diffMap)){el.classList.add('target-miss');setTimeout(()=>el.classList.remove('target-miss'),320);pz.miss++;const e=$('#pzMiss');if(e)e.textContent=pz.miss;return;}
+  if(pz.findDiffFound[i])return;
+  pz.findDiffFound[i]=true;pz.found++;el.classList.add('target-found');el.textContent='✔';
+  const e=$('#pzFound');if(e)e.textContent=pz.found;
+  if(pz.found>=pz.diff){const sec=(Date.now()-pz.start)/1000;const ideal=pz.n*2 + pz.diff*4;const stars=pzStars((pz.miss===0?0.45:(1-Math.min(1,pz.miss/8))*0.2)+Math.min(1,ideal/sec)*0.55);pzFinish('finddiff','🧩','找不同',sec,pz.miss,stars,'renderFindDiff','🔁 再来一局');}
+}
+
+/* ===== 积分商城：用学习积分(经验)兑换现实奖励 ===== */
+const RW_KEY='funReward';
+const RW_VER=2;
+const RW_DEFAULT=[['🧋','奶茶一杯',600],['🍔','KFC 小食一次',1000],['📱','玩手机 20 分钟',700],['📺','看动画 30 分钟',500],['🍦','冰淇淋一个',400],['🎁','神秘礼包',800],['🎳','亲子出游一次',2000]];
+const RW_DEFAULT_V1=[['🧋','奶茶一杯',30],['🍔','KFC 小食一次',50],['📱','玩手机 20 分钟',25],['📺','看动画 30 分钟',20],['🍦','冰淇淋一个',15],['🎁','神秘礼包',40],['🎳','亲子出游一次',100]];
+let rw={list:RW_DEFAULT.slice(),claims:[],pin:'8888',v:RW_VER};
+function sameRows(a,b){if(!Array.isArray(a)||!Array.isArray(b)||a.length!==b.length)return false;return a.every((r,i)=>Array.isArray(r)&&b[i]&&r[0]===b[i][0]&&r[1]===b[i][1]&&r[2]===b[i][2]);}
+function rwLoad(){const fresh={list:RW_DEFAULT.slice(),claims:[],pin:'8888',v:RW_VER};try{const s=JSON.parse(localStorage.getItem(RW_KEY)||'null');if(s&&Array.isArray(s.list)){if(s.v===RW_VER){rw={list:s.list,claims:s.claims||[],pin:s.pin||'8888',v:RW_VER};}else if(sameRows(s.list,RW_DEFAULT_V1)){rw=fresh;rwStore();}else{rw={list:s.list,claims:s.claims||[],pin:s.pin||'8888',v:RW_VER};}}else{rw=fresh;rwStore();}}catch(e){rw=fresh;rwStore();}}
+function rwStore(){try{localStorage.setItem(RW_KEY,JSON.stringify(rw));}catch(e){}}
+function rwHead(){return `<div class="quiz-head"><button class="back" onclick="goHome()">🏠 首页</button><span class="q-label">🎁 积分商城</span></div>
+  <div class="hero" style="padding-top:6px"><div class="big">🎁</div><h1>积分商城</h1><p>用学习积分兑换奖励，越努力越有惊喜！</p></div>`;}
+function openReward(){showReward();}
+function showReward(){
+  $('#screen-reward').innerHTML=rwHead()+`
+    <div class="pw-balance">⭐ 我的积分 <b style="color:#e07a00;font-size:26px">${state.xp}</b></div>
+    <div style="margin-top:14px">
+      ${rw.list.map((it,i)=>`
+        <div class="rw-item ${state.xp>=it[2]?'':'locked'}">
+          <div class="rw-emo">${it[0]}</div>
+          <div class="rw-name">${it[1]}</div>
+          <div class="rw-cost">${it[2]} 积分</div>
+          <button class="rw-claim" ${state.xp>=it[2]?'onclick="rwClaim('+i+')"':'disabled'}>${state.xp>=it[2]?'🌟 立即兑换':'积分不足'}</button>
+        </div>`).join('')}
+    </div>
+    <div class="btn-row">
+      <button class="btn go" style="background:linear-gradient(135deg,#56c2c9,#4f9df7)" onclick="showClaims()">🧾 我的兑换（${rw.claims.length}）</button>
+      <button class="btn go" style="background:linear-gradient(135deg,#aaa,#888);color:#fff" onclick="rwAdminDoor()">👤 家长设置</button>
+    </div>`;
+  show('screen-reward');
+}
+function rwClaim(i){
+  const it=rw.list[i];if(!it)return;
+  if(state.xp<it[2]){toast('积分还不够哦，继续加油！');return;}
+  if(!confirm('确定用 '+it[2]+' 积分兑换「'+it[1]+'」吗？'))return;
+  state.xp-=it[2];save();updateTop();
+  const c={id:Date.now()+'_'+i,n:it[1],emo:it[0],cost:it[2],time:new Date().toLocaleString('zh-CN',{hour12:false}),state:'待兑现'};
+  rw.claims.unshift(c);rwStore();
+  toast('🎉 已生成兑换凭证！找家长确认吧');showReward();
+}
+function showClaims(){
+  const list=rw.claims;
+  $('#screen-reward').innerHTML=rwHead()+`
+    <div style="font-size:16px;font-weight:900;color:#2a3a55;margin:6px 0 10px">🧾 我的兑换凭证</div>
+    ${list.length===0?'<div class="card-q" style="text-align:center"><div class="q-text">还没有兑换记录，先去赚积分吧！</div></div>':
+      list.map(c=>`
+      <div class="claim-row">
+        <div style="font-size:28px">${c.emo}</div>
+        <div style="flex:1"><div style="font-weight:900;color:#2a3a55">${c.n} <span style="color:#c08a1a">(-${c.cost})</span></div>
+        <div style="font-size:12px;color:#8a9ab8">${c.time} · ${c.state}</div></div>
+        ${c.state==='待兑现'?`<button class="s-btn" style="background:#ffe9c7;color:#a05b00" onclick="rwConfirm('${c.id}')">✅ 兑现成功</button>`:`<button class="s-btn" style="background:#e8f9ee;color:#2ea96b">🎉 已兑现</button>`}
+      </div>`).join('')}
+    <div class="btn-row"><button class="btn go" style="min-width:100%" onclick="showReward()">↩ 返回商城</button></div>`;
+  show('screen-reward');
+}
+function rwConfirm(id){const c=rw.claims.find(x=>x.id===id);if(c){c.state='已兑现';rwStore();showClaims();toast('✅ '+c.n+' 已兑现，孩子做得好！');}}
+function rwAdminDoor(){
+  const pin=prompt('这是家长设置区，请输入口令：');if(!pin)return;
+  if(pin!==rw.pin){toast('口令不对哦');return;}
+  rwAdmin();
+}
+function rwAdmin(){
+  $('#screen-reward').innerHTML=rwHead()+`
+    <div class="card-q">
+      <div style="font-weight:900;color:#2a3a55">👤 家长设置</div>
+      <div style="font-size:13px;color:#8a9ab8;margin:2px 0 10px">口令：${rw.pin}（可改）</div>
+      <button class="btn go" style="min-width:100%;margin-bottom:8px" onclick="rwAddPoints()">✨ 给孩子加分</button>
+      <button class="btn go" style="min-width:100%;margin-bottom:8px" onclick="rwAddItem()">➕ 新增奖励项</button>
+      <button class="btn go" style="min-width:100%;margin-bottom:8px" onclick="rwDelItem()">➖ 删除奖励项</button>
+      <button class="btn go" style="min-width:100%;margin-bottom:8px" onclick="rwChangePin()">🔑 修改口令</button>
+      <button class="btn go" style="background:linear-gradient(135deg,#ff9a8b,#ff6b7a);color:#fff;min-width:100%" onclick="rwReset()">🗑️ 清空全部兑换记录</button>
+    </div>
+    <div class="btn-row"><button class="btn go" style="min-width:100%" onclick="showReward()">↩ 返回商城</button></div>`;
+  show('screen-reward');
+}
+function rwAddPoints(){const s=prompt('输入要给孩子增加的积分（用减号可扣减）：');if(s==null)return;const n=parseInt(s);if(!isNaN(n)){state.xp+=n;save();updateTop();toast('✅ 积分已更新，当前 '+state.xp);showReward();}}
+function rwAddItem(){const s=prompt('新增奖励，格式：奖励名称,所需积分（如 蛋糕一块,25）：');if(!s)return;const p=s.split(',');const cost=parseInt((p[1]||'').trim());if(!p[0]||p[0].trim()===''||isNaN(cost)||cost<=0){toast('格式不对，请用：名称,积分');return;}rw.list.push(['🎁',p[0].trim(),cost]);rwStore();showReward();toast('已添加奖励');}
+function rwDelItem(){const s=prompt('输入要删除的奖励名称：');if(!s)return;const i=rw.list.findIndex(x=>x[1]===s.trim());if(i<0){toast('没找到该奖励');return;}rw.list.splice(i,1);rwStore();showReward();toast('已删除');}
+function rwChangePin(){const s=prompt('输入新口令（至少4位）：');if(!s||s.length<4){toast('口令需至少4位');return;}rw.pin=s;rwStore();toast('✅ 口令已更新');rwAdmin();}
+function rwReset(){if(!confirm('确定清空所有兑换记录吗？此操作不可恢复。'))return;rw.claims=[];rwStore();showReward();toast('已清空');}
+rwLoad();
 </script>
 </body>
 </html>
