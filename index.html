@@ -376,6 +376,34 @@
   .claim-row{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #eee2c8;border-radius:16px;padding:10px 12px;margin-bottom:8px;}
   .claim-row .cn{color:#c08a1a;font-weight:900;}
   .s-btn{border:none;border-radius:12px;padding:8px 12px;font-weight:800;cursor:pointer;font-size:13px;}
+  /* ===== 用户登录 / 选人 ===== */
+  .login-wrap{max-width:440px;margin:0 auto;padding:22px 20px 44px;text-align:center;}
+  .login-hero{font-size:76px;line-height:1;margin:22px 0 6px;animation:float 3s ease-in-out infinite;}
+  .login-title{font-size:30px;font-weight:950;color:var(--ink,#2a3a55);margin:12px 0 2px;}
+  .login-sub{font-size:14px;color:#8a9ab8;margin:0 0 20px;font-weight:700;}
+  .login-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:14px;}
+  .user-card{display:flex;align-items:center;gap:14px;background:#fff;border:3px solid #eee2c8;border-radius:20px;padding:12px 14px;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;position:relative;text-align:left;}
+  .user-card:active{transform:scale(.98);}
+  .user-card.on{border-color:var(--gold,#ff9f2e);background:#fff8ec;box-shadow:0 6px 16px rgba(255,177,60,.22);}
+  .user-emo{font-size:36px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#f3f6fc;border-radius:50%;flex:none;}
+  .user-card.on .user-emo{background:#ffe9c7;}
+  .user-name{font-size:18px;font-weight:900;color:var(--ink,#2a3a55);}
+  .user-role{font-size:12px;color:#8a9ab8;margin-top:2px;}
+  .user-card.on .user-role{color:var(--gold,#c08a1a);}
+  .user-del{position:absolute;top:10px;right:12px;border:none;background:#fde8e8;color:#d95555;width:26px;height:26px;border-radius:50%;font-weight:900;cursor:pointer;font-size:13px;line-height:1;}
+  .login-actions{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+  .btn.ghost{background:#fff;color:#5a6b8c;border:2px solid #e3ecfa;box-shadow:none;}
+  .chip-usertop{display:flex;align-items:center;gap:6px;background:#fff;border:2px solid #eee2c8;border-radius:999px;padding:5px 12px;font-weight:900;font-size:13px;color:var(--ink,#2a3a55);cursor:pointer;height:min-content;align-self:center;white-space:nowrap;}
+  .chip-usertop .cu-emo{font-size:18px;line-height:1;}
+  /* ===== 用户管理表单 ===== */
+  .user-form{display:flex;flex-direction:column;gap:10px;text-align:left;background:#fff;border:2px solid #eee2c8;border-radius:20px;padding:18px 16px;box-shadow:var(--shadow);}
+  .f-lb{font-weight:900;font-size:14px;color:#5a6b8c;margin-top:4px;}
+  .f-in{border:2px solid #e3ecfa;border-radius:14px;padding:12px;font-size:16px;font-family:inherit;color:var(--ink,#2a3a55);outline:none;background:#f8fbff;}
+  .f-in:focus{border-color:var(--gold,#ff9f2e);}
+  .emo-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;}
+  .emo-pick{font-size:24px;display:flex;align-items:center;justify-content:center;height:44px;background:#f3f6fc;border:2px solid transparent;border-radius:12px;cursor:pointer;transition:.12s;}
+  .emo-pick:active{transform:scale(.92);}
+  .emo-pick.on{border-color:var(--gold,#ff9f2e);background:#ffe9c7;}
 </style>
 </head>
 <body>
@@ -385,6 +413,7 @@
   <header class="top">
     <div class="logo"><div class="bubble">🦊</div>趣味学堂</div>
     <div class="stats">
+      <button class="chip-usertop" id="chipUser" onclick="openSwitchUser()"><span class="cu-emo" id="cuEmoji">🦊</span><span id="cuName">宝贝</span>▼</button>
       <button class="install" id="installBtn" onclick="installApp()">📲<span class="hint">&nbsp;安装到桌面</span></button>
       <div class="stat"><span class="ico">⭐</span><span id="statXp">0</span></div>
       <div class="stat"><span class="ico">🏅</span><span id="statBadges">0</span></div>
@@ -432,6 +461,15 @@
     <!-- 积分商城 -->
     <section class="screen" id="screen-reward"></section>
 
+    <!-- 用户登录 / 选人 -->
+    <section class="screen" id="screen-login">
+      <div class="login-wrap">
+        <div class="login-hero">🦊</div>
+        <h1 class="login-title">趣味学堂</h1>
+        <div id="loginGrid"></div>
+      </div>
+    </section>
+
   </main>
 </div>
 
@@ -465,13 +503,124 @@ function numToChinese(n){
   return out||'零';
 }
 
+/* ================= 多用户档案 ================= */
+const USERS_KEY='funUsers';
+let users={list:[],current:null};let firstRun=false;
+function _uid(){return users.current||null;}
+function _K(b){return _uid()?b+':'+_uid():b;}
+function saveUsers(){try{localStorage.setItem(USERS_KEY,JSON.stringify(users));}catch(e){}}
+function _getUser(uid){return users.list.find(u=>u.id===uid);}
+function _defaultKid(){return {id:'kid1',name:'宝贝',emoji:'🦊',role:'kid'};}
+function migrateLegacy(uid){
+  const pairs=[['funSchool','funSchool:'],['funExtend','funExtend:'],['funPuzzle','funPuzzle:']];
+  for(const[o,n]of pairs){const v=localStorage.getItem(o);if(v&&!localStorage.getItem(n+uid))localStorage.setItem(n+uid,v);}
+  try{const r=JSON.parse(localStorage.getItem(RW_KEY)||'null');if(r&&Array.isArray(r.claims)&&r.claims.length&&!localStorage.getItem('funRewardC:'+uid))localStorage.setItem('funRewardC:'+uid,JSON.stringify(r.claims));}catch(e){}
+}
+function loadUsers(){
+  try{const s=JSON.parse(localStorage.getItem(USERS_KEY)||'null');
+    if(s&&Array.isArray(s.list)&&s.list.length){users={list:s.list,current:s.list.find(u=>u.id===s.current)?s.current:s.list[0].id};}
+    else{firstRun=true;const d=_defaultKid();users={list:[d],current:d.id};migrateLegacy(d.id);saveUsers();}
+  }catch(e){firstRun=true;const d=_defaultKid();users={list:[d],current:d.id};saveUsers();}
+}
+function applyUser(uid){
+  users.current=uid;saveUsers();
+  loadState();if(!state.grade)state.grade=1;
+  extState={plan:{},done:{},bili:{},read:{},wrong:[]};xload();
+  pzSave={};pzLoad();
+  rwLoad();
+  updateTop();
+}
+function renderLogin(){renderLoginPick();show('screen-login');}
+/* 家长管理用：头像候选 */
+const LOGIN_EMOJI=['🦊','😺','🐰','🐻','🐼','🦁','🐵','🐶','🐷','🦄','🐧','🦉','🐢','🦋','🐸','🐯'];
+let _fEdit=null,_fEmoji='🦊',_fRole='kid',_fName='';
+function renderLoginPick(){
+  const cards=users.list.map(u=>`<div class="user-card ${u.id===users.current?'on':''}" onclick="userSwitch('${u.id}')">
+    <div class="user-emo">${u.emoji}</div><div class="user-name">${u.name}</div>
+    <div class="user-role">${u.role==='parent'?'👨‍👩‍👧 家长':'🧒 小朋友'}</div>
+  </div>`).join('');
+  $('#loginGrid').innerHTML=`<p class="login-sub">选择一位小朋友开始学习吧</p>
+    <div class="login-grid">${cards||'<div class="q-text">还没有用户，去家长管理添加一个吧</div>'}</div>
+    <div class="login-actions">
+      <button class="btn ghost" style="min-width:100%" onclick="goHome()">🎮 先随便看看</button>
+      <button class="btn go" style="min-width:100%" onclick="adminDoor()">👨‍👩‍👧 家长管理</button>
+    </div>`;
+}
+function adminDoor(){
+  const pin=prompt('这是家长管理区，请输入口令：');if(pin===null)return;
+  if(pin===rw.pin){renderLoginAdmin();}
+  else{toast('口令不对哦');}
+}
+function renderLoginAdmin(){
+  const rows=users.list.map(u=>`<div class="user-card" style="${u.id===users.current?'border-color:var(--gold,#ff9f2e)':''}">
+    <div class="user-emo">${u.emoji}</div>
+    <div class="user-name" style="flex:1">${u.name}<div class="user-role">${u.role==='parent'?'👨‍👩‍👧 家长':'🧒 小朋友'}</div></div>
+    <button class="s-btn" style="background:#eef3ff;color:#3a6bd5" onclick="userForm('${u.id}')">✏️ 改</button>
+    <button class="s-btn" style="background:#fde8e8;color:#d95555" onclick="userDel('${u.id}')">🗑️ 删</button>
+  </div>`).join('');
+  $('#loginGrid').innerHTML=`<p class="login-sub">👨‍👩‍👧 家长管理 · 管理登录人员</p>
+    <div class="login-grid">${rows}</div>
+    <div class="login-actions">
+      <button class="btn go" style="min-width:100%" onclick="userForm()">➕ 添加登录人员</button>
+      <button class="btn ghost" style="min-width:100%" onclick="renderLogin()">↩ 完成</button>
+    </div>`;
+}
+function userForm(editId){
+  _fEdit=editId||null;
+  const u=_fEdit?_getUser(_fEdit):null;
+  _fEmoji=(u&&u.emoji)||'🦊';_fRole=(u&&u.role)||'kid';_fName=(u&&u.name)||'';
+  renderUserForm();
+}
+function renderUserForm(){
+  const inp=document.getElementById('fName');if(inp)_fName=inp.value;
+  const emoPad=LOGIN_EMOJI.map(e=>`<div class="emo-pick ${e===_fEmoji?'on':''}" onclick="pickEmoji('${e}')">${e}</div>`).join('');
+  $('#loginGrid').innerHTML=`<p class="login-sub">${_fEdit?'✏️ 编辑登录人员':'➕ 添加登录人员'}</p>
+    <div class="user-form">
+      <label class="f-lb">昵称</label>
+      <input class="f-in" id="fName" value="${_fName}" placeholder="输入昵称" maxlength="10">
+      <label class="f-lb">头像</label>
+      <div class="emo-grid">${emoPad}</div>
+      <label class="f-lb">角色</label>
+      <div class="role-row">
+        <button class="btn ${_fRole==='kid'?'go':'ghost'}" style="min-width:0;flex:1" onclick="pickRole('kid')">🧒 小朋友</button>
+        <button class="btn ${_fRole==='parent'?'go':'ghost'}" style="min-width:0;flex:1" onclick="pickRole('parent')">👨‍👩‍👧 家长</button>
+      </div>
+      <button class="btn go" style="min-width:100%;margin-top:14px" onclick="userSave()">✅ 保存</button>
+      <button class="btn ghost" style="min-width:100%" onclick="renderLoginAdmin()">↩ 取消</button>
+    </div>`;
+}
+function pickEmoji(e){_fEmoji=e;renderUserForm();}
+function pickRole(r){_fRole=r;renderUserForm();}
+function userSave(){
+  const inp=document.getElementById('fName');const n=(inp?inp.value:_fName||'').trim();
+  if(!n){toast('昵称不能为空');return;}
+  if(_fEdit){
+    const u=_getUser(_fEdit);if(u){u.name=n;u.emoji=_fEmoji;u.role=_fRole;saveUsers();if(u.id===users.current)updateTop();}
+  }else{
+    const u={id:'u'+Date.now(),name:n,emoji:_fEmoji,role:_fRole};users.list.push(u);saveUsers();
+  }
+  renderLoginAdmin();toast('✅ 已保存');
+}
+function userSwitch(uid){if(uid===users.current){goHome();return;}applyUser(uid);toast('👋 欢迎，'+((_getUser(uid)||{}).name||''));goHome();}
+function userDel(uid){const u=_getUser(uid);if(!u)return;if(users.list.length<=1){toast('至少保留一个用户');return;}
+  if(!confirm('确定删除「'+u.name+'」吗？它的积分和进度会一起删除。'))return;
+  users.list=users.list.filter(x=>x.id!==uid);
+  ['funSchool','funExtend','funPuzzle','funRewardC'].forEach(bk=>{try{localStorage.removeItem(bk+':'+uid);}catch(e){}});
+  saveUsers();applyUser(users.list[0].id);toast('已删除');renderLogin();}
+function openSwitchUser(){renderLogin();}
+function showLoginFirstRun(){const L=document.querySelector('#screen-login'),H=document.querySelector('#screen-home');if(L&&H){H.classList.remove('active');L.classList.add('active');}renderLoginPick();}
+
 /* ================= 状态 ================= */
 let state={xp:0,badges:[],grade:1};
-try{const s=JSON.parse(localStorage.getItem('funSchool')||'null');if(s){state.xp=s.xp||0;state.badges=s.badges||[];state.grade=s.grade||1;}}catch(e){}
-function save(){try{localStorage.setItem('funSchool',JSON.stringify({xp:state.xp,badges:state.badges,grade:state.grade}));}catch(e){}}
+function loadState(){try{const s=JSON.parse(localStorage.getItem(_K('funSchool'))||'null');if(s){state.xp=s.xp||0;state.badges=s.badges||[];state.grade=s.grade||1;}}catch(e){}}
+function save(){try{localStorage.setItem(_K('funSchool'),JSON.stringify({xp:state.xp,badges:state.badges,grade:state.grade}));}catch(e){}}
 function addXp(n){state.xp+=n;save();updateTop();}
 function grantBadge(name){if(!state.badges.includes(name)){state.badges.push(name);save();updateTop();toast('🏆 获得荣誉徽章：'+BADGE_NAME[name]||name);}}
-function updateTop(){$('#statXp').textContent=state.xp;$('#statBadges').textContent=state.badges.length;}
+function updateTop(){
+  $('#statXp').textContent=state.xp;$('#statBadges').textContent=state.badges.length;
+  const su=_getUser(_uid());const ce=$('#cuEmoji'),cn=$('#cuName');
+  if(ce)ce.textContent=(su&&su.emoji)||'😊';if(cn)cn.textContent=(su&&su.name)||'我';
+}
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2600);}
 function floatText(x,y,txt){const f=document.createElement('span');f.className='floaty';f.textContent=txt;f.style.left=x+'px';f.style.top=y+'px';$('#floaties').appendChild(f);setTimeout(()=>f.remove(),1300);}
 function playSound(kind,g){
@@ -1741,8 +1890,8 @@ function renderBadges(){
 /* ================= 拓展学习 ================= */
 let extState={plan:{},done:{},bili:{},read:{},wrong:[]};
 const EXT_KEY='funExtend';
-function xload(){try{const s=JSON.parse(localStorage.getItem(EXT_KEY)||'null');if(s){extState=Object.assign(extState,s);}}catch(e){}}
-function xsave(){try{localStorage.setItem(EXT_KEY,JSON.stringify(extState));}catch(e){}}
+function xload(){try{const s=JSON.parse(localStorage.getItem(_K(EXT_KEY))||'null');if(s){extState=Object.assign(extState,s);}}catch(e){}}
+function xsave(){try{localStorage.setItem(_K(EXT_KEY),JSON.stringify(extState));}catch(e){}}
 function today(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
 function openExtend(){xload();renderExtendHome();show('screen-extend');}
 function extBack(){show('screen-home');}
@@ -2446,8 +2595,8 @@ function installApp(){if(!installPrompt)return;installPrompt.prompt();installPro
 
 /* ===== 益智游戏：训练专注力与耐心 ===== */
 let pz={null:null};let pzSave={};const PZ_KEY='funPuzzle';
-function pzLoad(){try{const s=JSON.parse(localStorage.getItem(PZ_KEY)||'null');if(s)pzSave=s;}catch(e){}}
-function pzStore(){try{localStorage.setItem(PZ_KEY,JSON.stringify(pzSave));}catch(e){}}
+function pzLoad(){try{const s=JSON.parse(localStorage.getItem(_K(PZ_KEY))||'null');if(s)pzSave=s;}catch(e){}}
+function pzStore(){try{localStorage.setItem(_K(PZ_KEY),JSON.stringify(pzSave));}catch(e){}}
 function pzClearTimer(){try{if(pz&&pz.timer)clearInterval(pz.timer);}catch(e){}}
 function pzStars(ok){return Math.max(1,Math.min(3,Math.ceil(ok*3)));}
 pzLoad();
@@ -2735,8 +2884,10 @@ const RW_DEFAULT=[['🧋','奶茶一杯',600],['🍔','KFC 小食一次',1000],[
 const RW_DEFAULT_V1=[['🧋','奶茶一杯',30],['🍔','KFC 小食一次',50],['📱','玩手机 20 分钟',25],['📺','看动画 30 分钟',20],['🍦','冰淇淋一个',15],['🎁','神秘礼包',40],['🎳','亲子出游一次',100]];
 let rw={list:RW_DEFAULT.slice(),claims:[],pin:'8888',v:RW_VER};
 function sameRows(a,b){if(!Array.isArray(a)||!Array.isArray(b)||a.length!==b.length)return false;return a.every((r,i)=>Array.isArray(r)&&b[i]&&r[0]===b[i][0]&&r[1]===b[i][1]&&r[2]===b[i][2]);}
-function rwLoad(){const fresh={list:RW_DEFAULT.slice(),claims:[],pin:'8888',v:RW_VER};try{const s=JSON.parse(localStorage.getItem(RW_KEY)||'null');if(s&&Array.isArray(s.list)){if(s.v===RW_VER){rw={list:s.list,claims:s.claims||[],pin:s.pin||'8888',v:RW_VER};}else if(sameRows(s.list,RW_DEFAULT_V1)){rw=fresh;rwStore();}else{rw={list:s.list,claims:s.claims||[],pin:s.pin||'8888',v:RW_VER};}}else{rw=fresh;rwStore();}}catch(e){rw=fresh;rwStore();}}
-function rwStore(){try{localStorage.setItem(RW_KEY,JSON.stringify(rw));}catch(e){}}
+function rwClaimKey(){return _K('funRewardC');}
+function rwLoad(){const fresh={list:RW_DEFAULT.slice(),claims:[],pin:'8888',v:RW_VER};try{const s=JSON.parse(localStorage.getItem(RW_KEY)||'null');if(s&&Array.isArray(s.list)){if(s.v===RW_VER){rw={list:s.list,claims:s.claims||[],pin:s.pin||'8888',v:RW_VER};}else if(sameRows(s.list,RW_DEFAULT_V1)){rw=fresh;rwStore();}else{rw={list:s.list,claims:s.claims||[],pin:s.pin||'8888',v:RW_VER};}}else{rw=fresh;rwStore();}}catch(e){rw=fresh;rwStore();}
+  try{const c=JSON.parse(localStorage.getItem(rwClaimKey())||'null');if(c&&Array.isArray(c))rw.claims=c;}catch(e){}}
+function rwStore(){try{localStorage.setItem(RW_KEY,JSON.stringify({list:rw.list,pin:rw.pin,v:rw.v}));localStorage.setItem(rwClaimKey(),JSON.stringify(rw.claims||[]));}catch(e){}}
 function rwHead(){return `<div class="quiz-head"><button class="back" onclick="goHome()">🏠 首页</button><span class="q-label">🎁 积分商城</span></div>
   <div class="hero" style="padding-top:6px"><div class="big">🎁</div><h1>积分商城</h1><p>用学习积分兑换奖励，越努力越有惊喜！</p></div>`;}
 function openReward(){showReward();}
@@ -2807,7 +2958,12 @@ function rwAddItem(){const s=prompt('新增奖励，格式：奖励名称,所需
 function rwDelItem(){const s=prompt('输入要删除的奖励名称：');if(!s)return;const i=rw.list.findIndex(x=>x[1]===s.trim());if(i<0){toast('没找到该奖励');return;}rw.list.splice(i,1);rwStore();showReward();toast('已删除');}
 function rwChangePin(){const s=prompt('输入新口令（至少4位）：');if(!s||s.length<4){toast('口令需至少4位');return;}rw.pin=s;rwStore();toast('✅ 口令已更新');rwAdmin();}
 function rwReset(){if(!confirm('确定清空所有兑换记录吗？此操作不可恢复。'))return;rw.claims=[];rwStore();showReward();toast('已清空');}
-rwLoad();
+
+/* ===== 启动：加载用户档案，首次进入显示选人页 ===== */
+loadUsers();
+applyUser(users.current||users.list[0].id);
+renderHome();
+if(firstRun){showLoginFirstRun();}
 </script>
 </body>
 </html>
