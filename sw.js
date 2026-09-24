@@ -1,4 +1,4 @@
-const CACHE = 'qxt-app-v28';
+﻿const CACHE = 'qxt-app-v29';
 const ASSETS = ['./', './index.html', './app-192.png', './app-512.png', './manifest.webmanifest'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });

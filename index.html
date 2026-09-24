@@ -404,6 +404,7 @@
   .emo-pick{font-size:24px;display:flex;align-items:center;justify-content:center;height:44px;background:#f3f6fc;border:2px solid transparent;border-radius:12px;cursor:pointer;transition:.12s;}
   .emo-pick:active{transform:scale(.92);}
   .emo-pick.on{border-color:var(--gold,#ff9f2e);background:#ffe9c7;}
+  .tip-line{font-size:12px;color:#a9b4cd;font-weight:700;margin:2px 0 12px;}
 </style>
 </head>
 <body>
@@ -510,7 +511,7 @@ function _uid(){return users.current||null;}
 function _K(b){return _uid()?b+':'+_uid():b;}
 function saveUsers(){try{localStorage.setItem(USERS_KEY,JSON.stringify(users));}catch(e){}}
 function _getUser(uid){return users.list.find(u=>u.id===uid);}
-function _defaultKid(){return {id:'kid1',name:'宝贝',emoji:'🦊',role:'kid'};}
+function _defaultKid(){return {id:'kid1',name:'宝贝',emoji:'🦊',role:'kid',pw:'123456'};}
 function migrateLegacy(uid){
   const pairs=[['funSchool','funSchool:'],['funExtend','funExtend:'],['funPuzzle','funPuzzle:']];
   for(const[o,n]of pairs){const v=localStorage.getItem(o);if(v&&!localStorage.getItem(n+uid))localStorage.setItem(n+uid,v);}
@@ -518,7 +519,7 @@ function migrateLegacy(uid){
 }
 function loadUsers(){
   try{const s=JSON.parse(localStorage.getItem(USERS_KEY)||'null');
-    if(s&&Array.isArray(s.list)&&s.list.length){users={list:s.list,current:s.list.find(u=>u.id===s.current)?s.current:s.list[0].id};}
+    if(s&&Array.isArray(s.list)&&s.list.length){s.list.forEach(u=>{if(u&&u.pw===undefined)u.pw='123456';});users={list:s.list,current:s.list.find(u=>u.id===s.current)?s.current:s.list[0].id};}
     else{firstRun=true;const d=_defaultKid();users={list:[d],current:d.id};migrateLegacy(d.id);saveUsers();}
   }catch(e){firstRun=true;const d=_defaultKid();users={list:[d],current:d.id};saveUsers();}
 }
@@ -533,18 +534,29 @@ function applyUser(uid){
 function renderLogin(){renderLoginPick();show('screen-login');}
 /* 家长管理用：头像候选 */
 const LOGIN_EMOJI=['🦊','😺','🐰','🐻','🐼','🦁','🐵','🐶','🐷','🦄','🐧','🦉','🐢','🦋','🐸','🐯'];
-let _fEdit=null,_fEmoji='🦊',_fRole='kid',_fName='';
+let _fEdit=null,_fEmoji='🦊',_fRole='kid',_fName='',_fPw='123456';
 function renderLoginPick(){
-  const cards=users.list.map(u=>`<div class="user-card ${u.id===users.current?'on':''}" onclick="userSwitch('${u.id}')">
+  const cards=users.list.map(u=>`<div class="user-card ${u.id===users.current?'on':''}" onclick="userLogin('${u.id}')">
     <div class="user-emo">${u.emoji}</div><div class="user-name">${u.name}</div>
     <div class="user-role">${u.role==='parent'?'👨‍👩‍👧 家长':'🧒 小朋友'}</div>
   </div>`).join('');
-  $('#loginGrid').innerHTML=`<p class="login-sub">选择一位小朋友开始学习吧</p>
+  $('#loginGrid').innerHTML=`<p class="login-sub">点击你要登录的人，输入密码进入</p>
     <div class="login-grid">${cards||'<div class="q-text">还没有用户，去家长管理添加一个吧</div>'}</div>
+    <div class="tip-line">🔑 用户密码默认 123456 · 家长管理口令默认 8888</div>
     <div class="login-actions">
-      <button class="btn ghost" style="min-width:100%" onclick="goHome()">🎮 先随便看看</button>
       <button class="btn go" style="min-width:100%" onclick="adminDoor()">👨‍👩‍👧 家长管理</button>
     </div>`;
+}
+function userLogin(uid){
+  const u=_getUser(uid);if(!u)return;
+  const pw=String((u.pw==null||u.pw==='')?'':u.pw);
+  if(pw!==''){
+    const got=prompt('请输入「'+u.name+'」的登录密码：');
+    if(got===null)return;
+    if(String(got)!==pw){toast('❌ 密码不对哦');return;}
+  }
+  applyUser(uid);toast('👋 欢迎，'+u.name);
+  goHome();
 }
 function adminDoor(){
   const pin=prompt('这是家长管理区，请输入口令：');if(pin===null)return;
@@ -569,15 +581,19 @@ function userForm(editId){
   _fEdit=editId||null;
   const u=_fEdit?_getUser(_fEdit):null;
   _fEmoji=(u&&u.emoji)||'🦊';_fRole=(u&&u.role)||'kid';_fName=(u&&u.name)||'';
+  _fPw=(u?(u.pw==null?'123456':u.pw):'123456');
   renderUserForm();
 }
 function renderUserForm(){
   const inp=document.getElementById('fName');if(inp)_fName=inp.value;
+  const pwInp=document.getElementById('fPw');if(pwInp)_fPw=pwInp.value;
   const emoPad=LOGIN_EMOJI.map(e=>`<div class="emo-pick ${e===_fEmoji?'on':''}" onclick="pickEmoji('${e}')">${e}</div>`).join('');
   $('#loginGrid').innerHTML=`<p class="login-sub">${_fEdit?'✏️ 编辑登录人员':'➕ 添加登录人员'}</p>
     <div class="user-form">
       <label class="f-lb">昵称</label>
       <input class="f-in" id="fName" value="${_fName}" placeholder="输入昵称" maxlength="10">
+      <label class="f-lb">登录密码 <small style="color:#a9b4cd;font-weight:600">（留空=登录免密码）</small></label>
+      <input class="f-in" id="fPw" value="${_fPw}" placeholder="默认 123456" maxlength="20">
       <label class="f-lb">头像</label>
       <div class="emo-grid">${emoPad}</div>
       <label class="f-lb">角色</label>
@@ -593,11 +609,12 @@ function pickEmoji(e){_fEmoji=e;renderUserForm();}
 function pickRole(r){_fRole=r;renderUserForm();}
 function userSave(){
   const inp=document.getElementById('fName');const n=(inp?inp.value:_fName||'').trim();
+  const pwI=document.getElementById('fPw');const pw=(pwI?pwI.value:_fPw||'').trim();
   if(!n){toast('昵称不能为空');return;}
   if(_fEdit){
-    const u=_getUser(_fEdit);if(u){u.name=n;u.emoji=_fEmoji;u.role=_fRole;saveUsers();if(u.id===users.current)updateTop();}
+    const u=_getUser(_fEdit);if(u){u.name=n;u.emoji=_fEmoji;u.role=_fRole;u.pw=pw;saveUsers();if(u.id===users.current)updateTop();}
   }else{
-    const u={id:'u'+Date.now(),name:n,emoji:_fEmoji,role:_fRole};users.list.push(u);saveUsers();
+    const u={id:'u'+Date.now(),name:n,emoji:_fEmoji,role:_fRole,pw:(pw||'123456')};users.list.push(u);saveUsers();
   }
   renderLoginAdmin();toast('✅ 已保存');
 }
@@ -2959,11 +2976,11 @@ function rwDelItem(){const s=prompt('输入要删除的奖励名称：');if(!s)r
 function rwChangePin(){const s=prompt('输入新口令（至少4位）：');if(!s||s.length<4){toast('口令需至少4位');return;}rw.pin=s;rwStore();toast('✅ 口令已更新');rwAdmin();}
 function rwReset(){if(!confirm('确定清空所有兑换记录吗？此操作不可恢复。'))return;rw.claims=[];rwStore();showReward();toast('已清空');}
 
-/* ===== 启动：加载用户档案，首次进入显示选人页 ===== */
+/* ===== 启动：加载用户档案，每次打开都先显示登录选人页(需密码进入) ===== */
 loadUsers();
 applyUser(users.current||users.list[0].id);
 renderHome();
-if(firstRun){showLoginFirstRun();}
+showLoginFirstRun();
 </script>
 </body>
 </html>
